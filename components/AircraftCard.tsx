@@ -45,7 +45,7 @@ const PHOTO_HEIGHT = 220;
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: radii.xl,
+    borderRadius: radii.lg,
     backgroundColor: colors.surface,
     overflow: 'hidden',
     ...shadows.card,
