@@ -98,3 +98,10 @@ export type ActivityItem = {
 // The demo/current user for this no-backend prototype. Alex owns the two
 // aircraft shown in My Hangar (N739JP, N2154U) in the look-and-feel reference.
 export const CURRENT_USER_ID = 'u1';
+
+// There's no follow graph in the sample data (users only carry aggregate
+// followersCount/followingCount). Rather than fabricate a followingUserIds
+// field across all 11 users for a relationship only Alex's own feed needs,
+// this fixed list stands in for "who Alex follows" and powers Flightline's
+// Following filter.
+export const CURRENT_USER_FOLLOWING_IDS: string[] = ['u2', 'u5', 'u7', 'u9'];
