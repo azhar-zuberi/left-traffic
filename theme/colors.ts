@@ -47,6 +47,10 @@ export const colors = {
 
   statusFlying: palette.skyBlue700,
   statusFlyingBackground: palette.skyBlue300,
+  statusMaintenance: palette.amber500,
+  statusMaintenanceBackground: '#F3DDB8',
+  statusGrounded: palette.aluminum700,
+  statusGroundedBackground: palette.aluminum100,
 
   like: palette.red500,
   warning: palette.amber500,
