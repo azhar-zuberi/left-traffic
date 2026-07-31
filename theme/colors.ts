@@ -8,7 +8,7 @@ export const palette = {
   navy800: '#10192B',
   navy700: '#182338',
 
-  warmWhite: '#FAF7F2',
+  warmWhite: '#FAFAFA',
   cream: '#F3EEE6',
   white: '#FFFFFF',
 
