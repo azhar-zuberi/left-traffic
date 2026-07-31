@@ -1,0 +1,123 @@
+[
+  {
+    "id": "u1",
+    "name": "Alex Rowen",
+    "handle": "alexrowen",
+    "avatarUrl": "https://i.pravatar.cc/300?img=11",
+    "homeAirport": "KSQL",
+    "bio": "Weekend cross-country junkie. Two planes, one hangar, never enough fuel budget.",
+    "joinedAt": "2019-05-01",
+    "followersCount": 312,
+    "followingCount": 198
+  },
+  {
+    "id": "u2",
+    "name": "Priya Nakamura",
+    "handle": "priyaflies",
+    "avatarUrl": "https://i.pravatar.cc/300?img=47",
+    "homeAirport": "CYXX",
+    "bio": "Fraser Valley local. 172 driver, coffee snob.",
+    "joinedAt": "2020-06-01",
+    "followersCount": 204,
+    "followingCount": 150
+  },
+  {
+    "id": "u3",
+    "name": "Jordan Blake",
+    "handle": "jblakebuilds",
+    "avatarUrl": "https://i.pravatar.cc/300?img=13",
+    "homeAirport": "KAPA",
+    "bio": "Built my RV-7 in the garage over nine years. Still not tired of flying it.",
+    "joinedAt": "2015-09-01",
+    "followersCount": 540,
+    "followingCount": 210
+  },
+  {
+    "id": "u4",
+    "name": "Sam Whitfield",
+    "handle": "samw",
+    "avatarUrl": "https://i.pravatar.cc/300?img=25",
+    "homeAirport": "KTRK",
+    "bio": "Sierra scenery, Mooney speed.",
+    "joinedAt": "2018-02-01",
+    "followersCount": 176,
+    "followingCount": 133
+  },
+  {
+    "id": "u5",
+    "name": "Casey Nguyen",
+    "handle": "rv8pilot",
+    "avatarUrl": "https://i.pravatar.cc/300?img=33",
+    "homeAirport": "KHAF",
+    "bio": "RV-8. Formation practice most Saturdays.",
+    "joinedAt": "2017-07-01",
+    "followersCount": 289,
+    "followingCount": 165
+  },
+  {
+    "id": "u6",
+    "name": "Dana Ferreira",
+    "handle": "danaflies",
+    "avatarUrl": "https://i.pravatar.cc/300?img=29",
+    "homeAirport": "KPAO",
+    "bio": "SR22, chute-equipped peace of mind.",
+    "joinedAt": "2021-11-01",
+    "followersCount": 142,
+    "followingCount": 98
+  },
+  {
+    "id": "u7",
+    "name": "Miguel Alvarez",
+    "handle": "malvarez",
+    "avatarUrl": "https://i.pravatar.cc/300?img=15",
+    "homeAirport": "KLVK",
+    "bio": "Bonanza owner. Livermore golden hour, every chance I get.",
+    "joinedAt": "2019-03-01",
+    "followersCount": 231,
+    "followingCount": 120
+  },
+  {
+    "id": "u8",
+    "name": "Grace Whitmore",
+    "handle": "gracew",
+    "avatarUrl": "https://i.pravatar.cc/300?img=45",
+    "homeAirport": "KWVI",
+    "bio": "Third owner of a very well-loved Sundowner.",
+    "joinedAt": "2021-03-15",
+    "followersCount": 118,
+    "followingCount": 87
+  },
+  {
+    "id": "u9",
+    "name": "Tom Reilly",
+    "handle": "backcountrytom",
+    "avatarUrl": "https://i.pravatar.cc/300?img=22",
+    "homeAirport": "KAUN",
+    "bio": "Traded the Cessna for a Carbon Cub. No regrets.",
+    "joinedAt": "2023-05-01",
+    "followersCount": 267,
+    "followingCount": 140
+  },
+  {
+    "id": "u10",
+    "name": "Frank Delgado",
+    "handle": "fdelgado",
+    "avatarUrl": "https://i.pravatar.cc/300?img=51",
+    "homeAirport": "KSQL",
+    "bio": "Flew N739JP for seven years before passing her on. Still stops by the hangar.",
+    "joinedAt": "2015-01-01",
+    "followersCount": 96,
+    "followingCount": 210
+  },
+  {
+    "id": "u11",
+    "name": "Walter Higgins",
+    "handle": "walterh",
+    "avatarUrl": "https://i.pravatar.cc/300?img=60",
+    "homeAirport": "KWVI",
+    "bio": "Retired owner, career mechanic. Still can't stay away from the ramp.",
+    "joinedAt": "2004-06-01",
+    "followersCount": 88,
+    "followingCount": 64
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "ac1",
+    "type": "like",
+    "actorUserId": "u2",
+    "actorAircraftId": "a3",
+    "targetPostId": "p6",
+    "targetUserId": null,
+    "createdAt": "2026-07-31T11:15:00-07:00",
+    "read": false
+  },
+  {
+    "id": "ac2",
+    "type": "comment",
+    "actorUserId": "u9",
+    "actorAircraftId": "a10",
+    "targetPostId": "p6",
+    "targetUserId": null,
+    "createdAt": "2026-07-31T10:40:00-07:00",
+    "read": false
+  },
+  {
+    "id": "ac3",
+    "type": "follow",
+    "actorUserId": "u3",
+    "actorAircraftId": "a4",
+    "targetPostId": null,
+    "targetUserId": "u1",
+    "createdAt": "2026-07-31T06:30:00-07:00",
+    "read": false
+  },
+  {
+    "id": "ac4",
+    "type": "like",
+    "actorUserId": "u4",
+    "actorAircraftId": "a5",
+    "targetPostId": "p5",
+    "targetUserId": null,
+    "createdAt": "2026-07-30T20:10:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac5",
+    "type": "comment",
+    "actorUserId": "u5",
+    "actorAircraftId": "a6",
+    "targetPostId": "p5",
+    "targetUserId": null,
+    "createdAt": "2026-07-30T14:05:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac6",
+    "type": "like",
+    "actorUserId": "u11",
+    "actorAircraftId": null,
+    "targetPostId": "p4",
+    "targetUserId": null,
+    "createdAt": "2026-07-29T09:00:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac7",
+    "type": "follow",
+    "actorUserId": "u6",
+    "actorAircraftId": "a7",
+    "targetPostId": null,
+    "targetUserId": "u1",
+    "createdAt": "2026-07-28T17:45:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac8",
+    "type": "comment",
+    "actorUserId": "u8",
+    "actorAircraftId": "a9",
+    "targetPostId": "p3",
+    "targetUserId": null,
+    "createdAt": "2026-07-26T12:00:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac9",
+    "type": "like",
+    "actorUserId": "u7",
+    "actorAircraftId": "a8",
+    "targetPostId": "p9",
+    "targetUserId": null,
+    "createdAt": "2026-07-25T08:30:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac10",
+    "type": "like",
+    "actorUserId": "u2",
+    "actorAircraftId": "a3",
+    "targetPostId": "p2",
+    "targetUserId": null,
+    "createdAt": "2026-07-20T19:00:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac11",
+    "type": "comment",
+    "actorUserId": "u10",
+    "actorAircraftId": null,
+    "targetPostId": "p1",
+    "targetUserId": null,
+    "createdAt": "2026-07-15T15:00:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac12",
+    "type": "follow",
+    "actorUserId": "u9",
+    "actorAircraftId": "a10",
+    "targetPostId": null,
+    "targetUserId": "u1",
+    "createdAt": "2026-07-10T11:00:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac13",
+    "type": "like",
+    "actorUserId": "u5",
+    "actorAircraftId": "a6",
+    "targetPostId": "p8",
+    "targetUserId": null,
+    "createdAt": "2026-07-08T13:20:00-07:00",
+    "read": true
+  },
+  {
+    "id": "ac14",
+    "type": "comment",
+    "actorUserId": "u4",
+    "actorAircraftId": "a5",
+    "targetPostId": "p7",
+    "targetUserId": null,
+    "createdAt": "2026-07-02T10:15:00-07:00",
+    "read": true
+  }
+]

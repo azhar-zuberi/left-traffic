@@ -1,0 +1,323 @@
+[
+  {
+    "id": "a1",
+    "registration": "N739JP",
+    "manufacturer": "Piper",
+    "model": "PA-28-181 Archer",
+    "year": 1978,
+    "serialNumber": "28-7890123",
+    "engine": "Lycoming O-360",
+    "horsepower": 180,
+    "propeller": "2 Blade Metal",
+    "usefulLoad": 890,
+    "cruiseSpeed": 140,
+    "range": 640,
+    "homeAirport": "KSQL",
+    "totalHours": 1245,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1566622246615-6dbe9c71629a?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1762846700384-f53acc2115db?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524592714635-d77511a4834d?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1585916788784-64aa099fec1f?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1681957157852-81f5f04aa521?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u1",
+    "ownershipHistory": [
+      {
+        "userId": "u10",
+        "startDate": "2015-04-01",
+        "endDate": "2022-08-10"
+      },
+      {
+        "userId": "u1",
+        "startDate": "2022-08-11",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a2",
+    "registration": "N2154U",
+    "manufacturer": "Cessna",
+    "model": "172",
+    "year": 1956,
+    "serialNumber": "172-34521",
+    "engine": "Continental O-300-A",
+    "horsepower": 145,
+    "propeller": "2 Blade Fixed Pitch",
+    "usefulLoad": 910,
+    "cruiseSpeed": 108,
+    "range": 500,
+    "homeAirport": "KSQL",
+    "totalHours": 3820,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1511140276483-30c1217ca449?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1771205868166-d1625702c6f3?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1737059217479-1f3ee86b5708?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518566107615-f7267099eced?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u1",
+    "ownershipHistory": [
+      {
+        "userId": "u1",
+        "startDate": "2019-05-15",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a3",
+    "registration": "C-GABC",
+    "manufacturer": "Cessna",
+    "model": "172F Skyhawk",
+    "year": 1966,
+    "serialNumber": "172-53142",
+    "engine": "Continental O-300-D",
+    "horsepower": 145,
+    "propeller": "2 Blade Fixed Pitch",
+    "usefulLoad": 895,
+    "cruiseSpeed": 112,
+    "range": 520,
+    "homeAirport": "CYXX",
+    "totalHours": 2650,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1604251204948-22773e22a03d?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1541611666598-71d25303fb88?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1649886535045-246644def7d4?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1762854630367-7b302716e85f?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u2",
+    "ownershipHistory": [
+      {
+        "userId": "u2",
+        "startDate": "2020-06-01",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a4",
+    "registration": "N456RV",
+    "manufacturer": "Van's",
+    "model": "RV-7",
+    "year": 2015,
+    "serialNumber": "72-1044",
+    "engine": "Lycoming IO-360",
+    "horsepower": 180,
+    "propeller": "3 Blade Constant Speed",
+    "usefulLoad": 800,
+    "cruiseSpeed": 180,
+    "range": 700,
+    "homeAirport": "KAPA",
+    "totalHours": 890,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1569938709389-ff8ab00530b3?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1708651425547-d5410c1caa44?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1761813409441-5c157440ab98?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1619659085985-f51a00f0160a?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u3",
+    "ownershipHistory": [
+      {
+        "userId": "u3",
+        "startDate": "2015-09-12",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a5",
+    "registration": "N123MA",
+    "manufacturer": "Mooney",
+    "model": "M20J 201",
+    "year": 1983,
+    "serialNumber": "24-3305",
+    "engine": "Lycoming IO-360-A3B6D",
+    "horsepower": 200,
+    "propeller": "2 Blade Constant Speed",
+    "usefulLoad": 950,
+    "cruiseSpeed": 165,
+    "range": 900,
+    "homeAirport": "KTRK",
+    "totalHours": 1560,
+    "status": "maintenance",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1522474252234-127492dde7f4?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1737059210461-3e5262d606e6?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1597464524433-ddb10e6dee6b?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1757858566618-2ee94d79a8d0?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u4",
+    "ownershipHistory": [
+      {
+        "userId": "u4",
+        "startDate": "2018-02-01",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a6",
+    "registration": "N19RV",
+    "manufacturer": "Van's",
+    "model": "RV-8",
+    "year": 2011,
+    "serialNumber": "80-1567",
+    "engine": "Lycoming IO-360",
+    "horsepower": 180,
+    "propeller": "3 Blade Constant Speed",
+    "usefulLoad": 700,
+    "cruiseSpeed": 185,
+    "range": 650,
+    "homeAirport": "KHAF",
+    "totalHours": 1120,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1585004873570-03667cd262de?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1494264274944-1ba7d9b73135?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1565377252682-fa2f81ae9fc6?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1737059217476-d2b021dde621?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u5",
+    "ownershipHistory": [
+      {
+        "userId": "u5",
+        "startDate": "2017-07-01",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a7",
+    "registration": "N42CD",
+    "manufacturer": "Cirrus",
+    "model": "SR22",
+    "year": 2019,
+    "serialNumber": "22-4471",
+    "engine": "Continental IO-550-N",
+    "horsepower": 310,
+    "propeller": "3 Blade Constant Speed",
+    "usefulLoad": 1300,
+    "cruiseSpeed": 183,
+    "range": 1000,
+    "homeAirport": "KPAO",
+    "totalHours": 430,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1590248850529-a6638bb7bca6?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1730638431097-b296a1785d83?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598543112034-d6de6c73eeed?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1763296479464-fe8bee23eb65?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u6",
+    "ownershipHistory": [
+      {
+        "userId": "u6",
+        "startDate": "2021-11-15",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a8",
+    "registration": "N815BA",
+    "manufacturer": "Beechcraft",
+    "model": "Bonanza A36",
+    "year": 1978,
+    "serialNumber": "E-2140",
+    "engine": "Continental IO-550-B",
+    "horsepower": 300,
+    "propeller": "3 Blade Constant Speed",
+    "usefulLoad": 1340,
+    "cruiseSpeed": 174,
+    "range": 920,
+    "homeAirport": "KLVK",
+    "totalHours": 2980,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1672282215650-b39cef1dd196?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1764916125225-7ccce5ae7310?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1694253987647-4eebcf679974?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u7",
+    "ownershipHistory": [
+      {
+        "userId": "u7",
+        "startDate": "2019-03-01",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a9",
+    "registration": "N221WD",
+    "manufacturer": "Beechcraft",
+    "model": "Sundowner C23",
+    "year": 1982,
+    "serialNumber": "M-2054",
+    "engine": "Lycoming O-360-A4K",
+    "horsepower": 180,
+    "propeller": "2 Blade Fixed Pitch",
+    "usefulLoad": 950,
+    "cruiseSpeed": 118,
+    "range": 480,
+    "homeAirport": "KWVI",
+    "totalHours": 4210,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1680627259725-2c7da3686b97?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1628000156679-b36c91956540?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1764547167359-277e66c9ac74?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594973841081-ec0c9c7e3064?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u8",
+    "ownershipHistory": [
+      {
+        "userId": "u11",
+        "startDate": "2004-06-01",
+        "endDate": "2021-03-14"
+      },
+      {
+        "userId": "u8",
+        "startDate": "2021-03-15",
+        "endDate": null
+      }
+    ]
+  },
+  {
+    "id": "a10",
+    "registration": "N7CC",
+    "manufacturer": "CubCrafters",
+    "model": "Carbon Cub SS",
+    "year": 2023,
+    "serialNumber": "CC18-0459",
+    "engine": "CC340 (Titan)",
+    "horsepower": 180,
+    "propeller": "3 Blade Composite",
+    "usefulLoad": 650,
+    "cruiseSpeed": 128,
+    "range": 500,
+    "homeAirport": "KAUN",
+    "totalHours": 210,
+    "status": "flying",
+    "heroPhotoUrl": "https://images.unsplash.com/photo-1617028835586-99e53772e453?w=1200&q=80&auto=format&fit=crop",
+    "photos": [
+      "https://images.unsplash.com/photo-1610226648204-6b88a2c7fa3c?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1748532630800-800e9e4ccad3?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524592714635-d77511a4834d?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "currentOwnerId": "u9",
+    "ownershipHistory": [
+      {
+        "userId": "u9",
+        "startDate": "2023-05-01",
+        "endDate": null
+      }
+    ]
+  }
+]
