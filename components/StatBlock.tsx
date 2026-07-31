@@ -14,8 +14,10 @@ export function StatBlock({ icon, value, label, onDark = false }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.valueRow}>
-        <Ionicons name={icon} size={15} color={onDark ? colors.textOnDarkMuted : colors.textMuted} />
-        <Text style={[styles.value, onDark ? styles.valueOnDark : styles.valueOnLight]}>{value}</Text>
+        <Ionicons name={icon} size={15} color={onDark ? colors.textOnDarkMuted : colors.textMuted} style={styles.icon} />
+        <Text style={[styles.value, onDark ? styles.valueOnDark : styles.valueOnLight]} numberOfLines={2}>
+          {value}
+        </Text>
       </View>
       <Text style={[styles.label, onDark ? styles.labelOnDark : styles.labelOnLight]}>{label}</Text>
     </View>
@@ -28,11 +30,15 @@ const styles = StyleSheet.create({
   },
   valueRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: spacing.xs,
+  },
+  icon: {
+    marginTop: 2,
   },
   value: {
     ...typography.subheading,
+    flexShrink: 1,
   },
   valueOnLight: {
     color: colors.textPrimary,
