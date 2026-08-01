@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-Digital Hangar is a **UX prototype**, not a production app. There is no backend, no API, no
+Left Traffic is a **UX prototype**, not a production app. There is no backend, no API, no
 authentication, and no cloud infrastructure — everything comes from local JSON in `sample-data/`.
 The goal is to validate product experience, not technology. See
-`docs/digital-hangar-app-front-end-prototype.md` for the full brief (role, philosophy, constraints)
+`docs/left-traffic-front-end-prototype.md` for the full brief (role, philosophy, constraints)
 — read it before making architectural changes.
 
 **Work in milestones.** Complete one milestone, explain what was built and why (including
@@ -26,7 +26,7 @@ Be opinionated about product/UX decisions — this role is product partner, not 
 - `docs/MOCK_DATA.md` — what the sample data should cover (entities, aircraft manufacturers, post
   categories).
 - `docs/ARCHITECTURE.md` — flat structure, no business logic / API layer / services / repositories.
-- `docs/digital-hangar-app-lnf.png` — look-and-feel reference mockup. Screens don't need to match
+- `docs/left-traffic-lnf.png` — look-and-feel reference mockup. Screens don't need to match
   it 1:1, but it's the visual and structural source of truth (nav pattern, card styles, typography).
 
 ## Commands

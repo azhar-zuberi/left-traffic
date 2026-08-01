@@ -1,6 +1,6 @@
-# Digital Hangar
+# Left Traffic
 
-Digital Hangar is the digital home of an aircraft. Aircraft are permanent; owners are
+Left Traffic is the digital home of an aircraft. Aircraft are permanent; owners are
 temporary — every owner adds another chapter to the aircraft's story. This repo is a
 **UX prototype**: there's no backend, no API, and no authentication. Every screen is driven by
 local JSON in `sample-data/`.
@@ -44,13 +44,13 @@ docs/           product brief, design system, screen requirements, mock data spe
 
 Everything that shapes this build lives in `docs/`:
 
-- `digital-hangar-app-front-end-prototype.md` — the project brief: role, philosophy, constraints
+- `left-traffic-front-end-prototype.md` — the project brief: role, philosophy, constraints
 - `PRODUCT_VISION.md` — the product's emotional core
 - `DESIGN_SYSTEM.md` — palette, typography, and visual language
 - `SCREEN_REQUIREMENTS.md` — the 10 screens and what each must contain
 - `MOCK_DATA.md` — what the sample data should cover
 - `ARCHITECTURE.md` — project structure and constraints (no backend, no business logic layer)
-- `digital-hangar-app-lnf.png` — look-and-feel reference
+- `left-traffic-lnf.png` — look-and-feel reference
 
 `CLAUDE.md` has more detail on how the codebase is wired together (routing patterns, data
 modeling decisions, theme conventions) for anyone — human or otherwise — picking this up.

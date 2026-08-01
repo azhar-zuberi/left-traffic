@@ -10,7 +10,7 @@ type Props = {
 };
 
 // Temporary stand-in for every route until each screen gets its real design.
-// Milestone 1 is scaffold-only — see docs/digital-hangar-app-front-end-prototype.md.
+// Milestone 1 is scaffold-only — see docs/left-traffic-front-end-prototype.md.
 export function ScreenPlaceholder({ title, description, dark = false }: Props) {
   return (
     <SafeAreaView

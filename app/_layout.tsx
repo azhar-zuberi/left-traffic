@@ -8,7 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { colors } from '@/theme';
 
-// No authentication in this prototype (docs/digital-hangar-app-front-end-prototype.md) —
+// No authentication in this prototype (docs/left-traffic-front-end-prototype.md) —
 // Login is just the launch screen on native, not an enforced gate. Its "Continue" actions
 // will navigate straight into (tabs) once built. `(tabs)/index` legitimately owns "/", so
 // there is no separate root index.tsx redirecting there.

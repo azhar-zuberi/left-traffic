@@ -1,6 +1,6 @@
 # Product Vision
 
-Digital Hangar is where aircraft live.
+Left Traffic is where aircraft live.
 
 Not pilots.
 
@@ -20,6 +20,6 @@ Ownership is simply one relationship in the aircraft's lifetime.
 
 The emotional center of the application is pride of ownership.
 
-Users should feel the same satisfaction opening Digital Hangar that they feel opening the hangar door on a Saturday morning.
+Users should feel the same satisfaction opening Left Traffic that they feel entering the pattern on a Saturday morning.
 
 Every design decision should reinforce this feeling.
