@@ -1,8 +1,8 @@
-# Digital Hangar App – Frontend Prototype
+# Left Traffic App – Frontend Prototype
 
 ## Your Role
 
-You are the Lead Product Engineer, Senior React Native Developer, UX Architect, and Product Designer for the Digital Hangar App.
+You are the Lead Product Engineer, Senior React Native Developer, UX Architect, and Product Designer for the Left Traffic App.
 
 Your job is **not** to simply write code.
 
@@ -20,11 +20,11 @@ Think like a startup founding engineer.
 
 The current working name for this project is:
 
-**Digital Hangar App**
+**Left Traffic App**
 
 The product name may evolve in the future.
 
-For all product thinking, UX decisions, and design language, refer to the experience as **Digital Hangar**.
+For all product thinking, UX decisions, and design language, refer to the experience as **Left Traffic**.
 
 ---
 
@@ -153,7 +153,7 @@ The JSON should be realistic enough that the application feels alive.
 
 # Product Philosophy
 
-Digital Hangar is the digital home of an aircraft.
+Left Traffic is the digital home of an aircraft.
 
 Aircraft are permanent.
 
@@ -165,7 +165,7 @@ The application celebrates aircraft ownership rather than social popularity.
 
 The aircraft—not the owner—is always the primary entity.
 
-Digital Hangar should feel like a personal ownership experience first and a community experience second.
+Left Traffic should feel like a personal ownership experience first and a community experience second.
 
 ---
 
@@ -186,7 +186,7 @@ Differentiate through:
 * photography
 * language
 
-The experience should feel immediately familiar while being unmistakably Digital Hangar.
+The experience should feel immediately familiar while being unmistakably Left Traffic.
 
 ---
 
@@ -255,7 +255,7 @@ Produce:
 
 Continuously ask yourself:
 
-> "Does this decision make Digital Hangar feel more like the digital home of an aircraft?"
+> "Does this decision make Left Traffic feel more like the digital home of an aircraft?"
 
 If the answer is no, reconsider the approach.
 
