@@ -30,7 +30,7 @@ export function LoginScreen() {
       <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
         <View style={styles.brandBlock}>
           <Icon name="airplane" size={30} color={colors.textPrimary} style={styles.brandIcon} />
-          <Text style={styles.wordmark}>Digital{'\n'}Hangar</Text>
+          <Text style={styles.wordmark}>Left{'\n'}Traffic</Text>
           <Text style={styles.tagline}>A home for every aircraft you love.</Text>
         </View>
 

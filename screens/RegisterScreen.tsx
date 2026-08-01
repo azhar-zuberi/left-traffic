@@ -93,7 +93,7 @@ export function RegisterScreen() {
           </Pressable>
 
           <Text style={styles.legalText}>
-            By continuing, you agree to Digital Hangar&rsquo;s Terms and Privacy Policy.
+            By continuing, you agree to Left Traffic&rsquo;s Terms and Privacy Policy.
           </Text>
         </View>
       </SafeAreaView>

@@ -101,7 +101,7 @@ export function SettingsScreen() {
 
           <Text style={styles.sectionLabel}>About</Text>
           <View style={styles.listCard}>
-            <SettingsRow icon="information-circle-outline" label="Digital Hangar" right={<Text style={styles.value}>Prototype</Text>} />
+            <SettingsRow icon="information-circle-outline" label="Left Traffic" right={<Text style={styles.value}>Prototype</Text>} />
           </View>
 
           <Pressable
