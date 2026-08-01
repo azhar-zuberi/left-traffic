@@ -4,6 +4,7 @@ import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { BrandMark } from '@/components/BrandMark';
 import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 
@@ -29,7 +30,7 @@ export function LoginScreen() {
 
       <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
         <View style={styles.brandBlock}>
-          <Icon name="airplane" size={30} color={colors.textPrimary} style={styles.brandIcon} />
+          <BrandMark size={44} color={colors.textPrimary} style={styles.brandIcon} />
           <Text style={styles.wordmark}>Left{'\n'}Traffic</Text>
           <Text style={styles.tagline}>A home for every aircraft you love.</Text>
         </View>
