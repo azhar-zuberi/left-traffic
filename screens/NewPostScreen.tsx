@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState, type ReactNode } from 'react';
 import {
@@ -14,7 +13,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors, radii, spacing, typography } from '@/theme';
+import { Icon, type IconName } from '@/components/Icon';
+import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
 import { CATEGORY_LABELS, POST_CATEGORIES } from '@/utils/postCategories';
 import { aircraft, posts, users } from '@/utils/sampleData';
 import { STOCK_PHOTOS } from '@/utils/stockPhotos';
@@ -52,7 +52,7 @@ export function NewPostScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.completeSection}>
           <View style={styles.successIcon}>
-            <Ionicons name="checkmark" size={32} color={colors.textOnDark} />
+            <Icon name="checkmark" size={32} color={colors.textOnDark} />
           </View>
           <Image source={{ uri: photoUrl }} style={styles.completePhoto} />
           <Text style={styles.completeTitle}>Added to the Flightline</Text>
@@ -73,7 +73,7 @@ export function NewPostScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={22} color={colors.textPrimary} />
+            <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
           <Text style={styles.headerTitle}>New Post</Text>
           <Pressable onPress={() => canPost && setPosted(true)} hitSlop={8} style={styles.nextButton}>
@@ -88,7 +88,7 @@ export function NewPostScreen() {
               onPress={() => toggle('photo')}
               style={({ pressed }) => [styles.editPill, pressed && styles.editPillPressed]}
             >
-              <Ionicons name="image-outline" size={14} color={colors.textOnDark} />
+              <Icon name="image-outline" size={14} color={colors.textOnDark} />
               <Text style={styles.editPillText}>Edit</Text>
             </Pressable>
           </View>
@@ -107,7 +107,7 @@ export function NewPostScreen() {
                   <Image source={{ uri: url }} style={styles.photoImage} />
                   {url === photoUrl && (
                     <View style={styles.photoCheck}>
-                      <Ionicons name="checkmark" size={14} color={colors.textOnDark} />
+                      <Icon name="checkmark" size={14} color={colors.textOnDark} />
                     </View>
                   )}
                 </Pressable>
@@ -176,7 +176,7 @@ export function NewPostScreen() {
                   {loc.city}, {loc.state} ({loc.airportCode})
                 </Text>
                 {loc.airportCode === location.airportCode && (
-                  <Ionicons name="checkmark" size={16} color={colors.accent} />
+                  <Icon name="checkmark" size={16} color={colors.accent} />
                 )}
               </Pressable>
             ))}
@@ -205,7 +205,7 @@ export function NewPostScreen() {
                   {a.registration} · {a.manufacturer} {a.model}
                 </Text>
                 {a.id === taggedAircraftId && (
-                  <Ionicons name="checkmark" size={16} color={colors.accent} />
+                  <Icon name="checkmark" size={16} color={colors.accent} />
                 )}
               </Pressable>
             ))}
@@ -215,13 +215,13 @@ export function NewPostScreen() {
 
           <View style={styles.mediaRow}>
             <Pressable onPress={() => toggle('photo')} hitSlop={8}>
-              <Ionicons name="image-outline" size={22} color={colors.textSecondary} />
+              <Icon name="image-outline" size={22} color={colors.textSecondary} />
             </Pressable>
             <Pressable onPress={() => toggle('photo')} hitSlop={8}>
-              <Ionicons name="play-circle-outline" size={22} color={colors.textSecondary} />
+              <Icon name="play-circle-outline" size={22} color={colors.textSecondary} />
             </Pressable>
             <Pressable onPress={() => toggle('photo')} hitSlop={8}>
-              <Ionicons name="camera-outline" size={22} color={colors.textSecondary} />
+              <Icon name="camera-outline" size={22} color={colors.textSecondary} />
             </Pressable>
           </View>
         </ScrollView>
@@ -231,7 +231,7 @@ export function NewPostScreen() {
 }
 
 type PickerRowProps = {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: IconName;
   label: string;
   value: string;
   expanded: boolean;
@@ -243,12 +243,12 @@ function PickerRow({ icon, label, value, expanded, onToggle, children }: PickerR
   return (
     <View>
       <Pressable onPress={onToggle} style={styles.pickerRow}>
-        <Ionicons name={icon} size={18} color={colors.textSecondary} />
+        <Icon name={icon} size={18} color={colors.textSecondary} />
         <Text style={styles.pickerLabel}>{label}</Text>
         <Text style={styles.pickerValue} numberOfLines={1}>
           {value}
         </Text>
-        <Ionicons
+        <Icon
           name={expanded ? 'chevron-down' : 'chevron-forward'}
           size={16}
           color={colors.textMuted}
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
   },
   nextText: {
     ...typography.body,
-    fontWeight: '700',
+    fontFamily: fontFamilies.body.bold,
     color: colors.accent,
   },
   nextTextDisabled: {
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
   },
   editPillText: {
     ...typography.caption,
-    fontWeight: '600',
+    fontFamily: fontFamilies.body.semibold,
     color: colors.textOnDark,
   },
   photoGrid: {
@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
   },
   chipTextSelected: {
     color: colors.textOnDark,
-    fontWeight: '600',
+    fontFamily: fontFamilies.body.semibold,
   },
   listOption: {
     flexDirection: 'row',
@@ -447,7 +447,7 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     ...typography.body,
-    fontWeight: '700',
+    fontFamily: fontFamilies.body.bold,
     color: colors.textOnDark,
   },
   completeSection: {

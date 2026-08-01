@@ -1,11 +1,11 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useMemo } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Icon } from '@/components/Icon';
 import { StatBlock } from '@/components/StatBlock';
-import { colors, radii, shadows, spacing, typography } from '@/theme';
+import { colors, fontFamilies, radii, shadows, spacing, typography } from '@/theme';
 import { formatNumber } from '@/utils/format';
 import { aircraft, posts, users } from '@/utils/sampleData';
 import { CURRENT_USER_ID } from '@/utils/types';
@@ -36,7 +36,7 @@ export function ProfileScreen() {
           style={({ pressed }) => [styles.settingsButton, pressed && styles.settingsButtonPressed]}
           hitSlop={8}
         >
-          <Ionicons name="settings-outline" size={20} color={colors.textPrimary} />
+          <Icon name="settings-outline" size={20} color={colors.textPrimary} />
         </Pressable>
       </View>
 
@@ -47,7 +47,7 @@ export function ProfileScreen() {
           <Text style={styles.handle}>@{currentUser.handle}</Text>
           <Text style={styles.bio}>{currentUser.bio}</Text>
           <View style={styles.metaRow}>
-            <Ionicons name="location-outline" size={14} color={colors.textMuted} />
+            <Icon name="location-outline" size={14} color={colors.textMuted} />
             <Text style={styles.metaText}>{currentUser.homeAirport}</Text>
             <Text style={styles.metaDot}>·</Text>
             <Text style={styles.metaText}>Member since {memberSinceYear}</Text>
@@ -62,7 +62,7 @@ export function ProfileScreen() {
             label="Followers"
           />
           <StatBlock
-            icon="person-add-outline"
+            icon="person-add"
             value={formatNumber(currentUser.followingCount)}
             label="Following"
           />
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   },
   aircraftReg: {
     ...typography.body,
-    fontWeight: '700',
+    fontFamily: fontFamilies.body.bold,
     color: colors.textPrimary,
     marginTop: spacing.sm,
   },

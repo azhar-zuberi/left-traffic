@@ -1,8 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, radii, shadows, spacing, typography } from '@/theme';
+import { Icon } from '@/components/Icon';
+import { colors, fontFamilies, radii, shadows, spacing, typography } from '@/theme';
 import { formatNumber, formatRelativeTime } from '@/utils/format';
 import { CATEGORY_LABELS } from '@/utils/postCategories';
 import type { Aircraft, Post } from '@/utils/types';
@@ -49,7 +49,7 @@ export function PostCard({ post, aircraft, onPress }: Props) {
             }}
             hitSlop={8}
           >
-            <Ionicons
+            <Icon
               name={liked ? 'heart' : 'heart-outline'}
               size={20}
               color={liked ? colors.like : colors.textMuted}
@@ -58,7 +58,7 @@ export function PostCard({ post, aircraft, onPress }: Props) {
           </Pressable>
 
           <Pressable style={styles.actionItem} onPress={onPress} hitSlop={8}>
-            <Ionicons name="chatbubble-outline" size={19} color={colors.textMuted} />
+            <Icon name="chatbubble-outline" size={19} color={colors.textMuted} />
             <Text style={styles.actionCount}>{formatNumber(post.commentCount)}</Text>
           </Pressable>
 
@@ -71,7 +71,7 @@ export function PostCard({ post, aircraft, onPress }: Props) {
             }}
             hitSlop={8}
           >
-            <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={19} color={colors.textMuted} />
+            <Icon name={saved ? 'bookmark' : 'bookmark-outline'} size={19} color={colors.textMuted} />
           </Pressable>
         </View>
       </View>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   registration: {
     ...typography.body,
-    fontWeight: '700',
+    fontFamily: fontFamilies.body.bold,
     color: colors.textPrimary,
   },
   model: {
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...typography.body,
-    fontWeight: '600',
+    fontFamily: fontFamilies.body.semibold,
     color: colors.textPrimary,
     marginTop: spacing.xs,
   },

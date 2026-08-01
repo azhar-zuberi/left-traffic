@@ -1,8 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, radii, spacing, typography } from '@/theme';
+import { Icon } from '@/components/Icon';
+import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
 import { formatNumber, formatRelativeTime } from '@/utils/format';
 import type { Comment, User } from '@/utils/types';
 
@@ -24,7 +24,7 @@ export function CommentRow({ comment, author }: Props) {
         </View>
         <Text style={styles.text}>{comment.body}</Text>
         <Pressable style={styles.likeButton} onPress={() => setLiked((v) => !v)} hitSlop={8}>
-          <Ionicons
+          <Icon
             name={liked ? 'heart' : 'heart-outline'}
             size={14}
             color={liked ? colors.like : colors.textMuted}
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   name: {
     ...typography.body,
-    fontWeight: '600',
+    fontFamily: fontFamilies.body.semibold,
     color: colors.textPrimary,
   },
   time: {

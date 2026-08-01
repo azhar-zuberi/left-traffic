@@ -1,6 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import { GestureResponderEvent, Pressable, StyleSheet } from 'react-native';
 
+import { Icon } from '@/components/Icon';
 import { colors, radii } from '@/theme';
 
 // Center "+" tab bar button. Its parent Tabs.Screen intercepts tabPress and
@@ -8,7 +8,7 @@ import { colors, radii } from '@/theme';
 export function FabTabButton({ onPress }: { onPress?: (event: GestureResponderEvent) => void }) {
   return (
     <Pressable onPress={onPress} style={styles.button} hitSlop={8}>
-      <Ionicons name="add" size={28} color={colors.textOnDark} />
+      <Icon name="add" size={28} color={colors.textOnDark} />
     </Pressable>
   );
 }

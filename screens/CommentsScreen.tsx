@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
@@ -15,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CommentRow } from '@/components/CommentRow';
+import { Icon } from '@/components/Icon';
 import { PostCard } from '@/components/PostCard';
 import { colors, radii, spacing, typography } from '@/theme';
 import { aircraft, comments, posts, users } from '@/utils/sampleData';
@@ -72,7 +72,7 @@ export function CommentsScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={22} color={colors.textPrimary} />
+            <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
           <Text style={styles.headerTitle}>Comments</Text>
           <View style={styles.headerSpacer} />
@@ -114,7 +114,7 @@ export function CommentsScreen() {
             hitSlop={8}
             style={styles.sendButton}
           >
-            <Ionicons
+            <Icon
               name="arrow-up-circle"
               size={30}
               color={commentText.trim() ? colors.accent : colors.textMuted}
