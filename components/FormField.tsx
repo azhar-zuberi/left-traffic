@@ -11,6 +11,7 @@ type Props = {
   keyboardType?: TextInputProps['keyboardType'];
   autoCapitalize?: TextInputProps['autoCapitalize'];
   multiline?: boolean;
+  secureTextEntry?: boolean;
 };
 
 export function FormField({
@@ -22,6 +23,7 @@ export function FormField({
   keyboardType,
   autoCapitalize = 'words',
   multiline = false,
+  secureTextEntry = false,
 }: Props) {
   return (
     <View style={styles.container}>
@@ -35,6 +37,7 @@ export function FormField({
         keyboardType={keyboardType}
         autoCapitalize={autoCapitalize}
         multiline={multiline}
+        secureTextEntry={secureTextEntry}
         style={[styles.input, multiline && styles.inputMultiline, !editable && styles.inputDisabled]}
       />
     </View>

@@ -23,6 +23,7 @@ export default function RootLayout() {
         <StatusBar style="auto" />
         <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
           <Stack.Screen name="login" />
+          <Stack.Screen name="register" options={{ presentation: 'modal' }} />
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="aircraft/[aircraftId]" />
           <Stack.Screen name="comments/[postId]" options={{ presentation: 'card' }} />
