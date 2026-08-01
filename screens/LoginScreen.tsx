@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 
-const HERO_PHOTO = require('@/assets/images/splash-sunset.png');
+const HERO_PHOTO = require('@/assets/images/splash2.jpg');
 
 function enterApp() {
   router.replace('/(tabs)');
@@ -71,10 +71,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.backgroundDark,
+    overflow: 'hidden',
   },
   heroImage: {
     width: '100%',
-    height: '100%',
+    height: '112%',
+    top: '-20%',
   },
   safeArea: {
     flex: 1,
