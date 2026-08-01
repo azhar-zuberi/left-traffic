@@ -4,7 +4,8 @@ import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors, radii, spacing, typography } from '@/theme';
+import { Icon } from '@/components/Icon';
+import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
 import { aircraft } from '@/utils/sampleData';
 
 const HERO_PHOTO = (aircraft.find((a) => a.id === 'a1') ?? aircraft[0]).heroPhotoUrl;
@@ -25,7 +26,7 @@ export function LoginScreen() {
 
       <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
         <View style={styles.brandBlock}>
-          <Ionicons name="airplane" size={30} color={colors.textPrimary} style={styles.brandIcon} />
+          <Icon name="airplane" size={30} color={colors.textPrimary} style={styles.brandIcon} />
           <Text style={styles.wordmark}>Digital{'\n'}Hangar</Text>
           <Text style={styles.tagline}>A home for every aircraft you love.</Text>
         </View>
@@ -53,7 +54,7 @@ export function LoginScreen() {
 
           <View style={styles.footerDivider}>
             <View style={styles.dividerLine} />
-            <Ionicons name="ribbon-outline" size={16} color={colors.textOnDarkMuted} />
+            <Icon name="ribbon-outline" size={16} color={colors.textOnDarkMuted} />
             <View style={styles.dividerLine} />
           </View>
           <Text style={styles.footerText}>Built by pilots. For pilots.</Text>
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   },
   googleButtonText: {
     ...typography.body,
-    fontWeight: '700',
+    fontFamily: fontFamilies.body.bold,
     color: colors.textOnDark,
   },
   appleButton: {
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
   },
   appleButtonText: {
     ...typography.body,
-    fontWeight: '700',
+    fontFamily: fontFamilies.body.bold,
     color: colors.textPrimary,
   },
   moreOptions: {
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
   },
   moreOptionsText: {
     ...typography.bodyMuted,
-    fontWeight: '600',
+    fontFamily: fontFamilies.body.semibold,
     color: colors.textOnDark,
     textDecorationLine: 'underline',
   },

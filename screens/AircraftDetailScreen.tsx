@@ -1,15 +1,15 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Icon } from '@/components/Icon';
 import { LogbookEntry } from '@/components/LogbookEntry';
 import { SegmentedTabs } from '@/components/SegmentedTabs';
 import { SpecRow } from '@/components/SpecRow';
 import { StatBlock } from '@/components/StatBlock';
 import { StatusPill } from '@/components/StatusPill';
-import { colors, radii, spacing, typography } from '@/theme';
+import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
 import { formatNumber } from '@/utils/format';
 import { aircraft, posts } from '@/utils/sampleData';
 import type { Post } from '@/utils/types';
@@ -69,7 +69,7 @@ export function AircraftDetailScreen() {
             style={[styles.backButton, { top: insets.top + spacing.sm }]}
             hitSlop={8}
           >
-            <Ionicons name="chevron-back" size={22} color={colors.textOnDark} />
+            <Icon name="chevron-back" size={22} color={colors.textOnDark} />
           </Pressable>
         </View>
 
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   },
   viewAll: {
     ...typography.bodyMuted,
-    fontWeight: '600',
+    fontFamily: fontFamilies.body.semibold,
     color: colors.accent,
   },
   photosScroll: {

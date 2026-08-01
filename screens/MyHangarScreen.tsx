@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AircraftCard } from '@/components/AircraftCard';
+import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 import { aircraft, posts } from '@/utils/sampleData';
 import { CURRENT_USER_ID, type Aircraft } from '@/utils/types';
@@ -34,7 +34,7 @@ export function MyHangarScreen() {
           style={({ pressed }) => [styles.addButton, pressed && styles.addButtonPressed]}
           hitSlop={8}
         >
-          <Ionicons name="add" size={22} color={colors.textOnDark} />
+          <Icon name="add" size={22} color={colors.textOnDark} />
         </Pressable>
       </View>
 

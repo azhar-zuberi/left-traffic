@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, spacing, typography } from '@/theme';
+import { colors, fontFamilies, spacing, typography } from '@/theme';
 
 type Props = {
   label: string;
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   value: {
     ...typography.body,
-    fontWeight: '600',
+    fontFamily: fontFamilies.body.semibold,
     color: colors.textPrimary,
   },
 });
