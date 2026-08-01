@@ -1,7 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Icon, type IconName } from '@/components/Icon';
-import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
+import { colors, radii, spacing, typography } from '@/theme';
 import { formatRelativeTime } from '@/utils/format';
 import type { ActivityType } from '@/utils/types';
 
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
   },
   actorName: {
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textPrimary,
   },
   time: {

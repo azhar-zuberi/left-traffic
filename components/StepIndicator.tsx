@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Icon, type IconName } from '@/components/Icon';
-import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
+import { colors, radii, spacing, typography } from '@/theme';
 
 export type Step = {
   key: string;
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   labelActive: {
     color: colors.textPrimary,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
   },
   labelInactive: {
     color: colors.textMuted,

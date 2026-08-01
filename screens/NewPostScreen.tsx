@@ -14,7 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon, type IconName } from '@/components/Icon';
-import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
+import { colors, radii, spacing, typography } from '@/theme';
 import { CATEGORY_LABELS, POST_CATEGORIES } from '@/utils/postCategories';
 import { aircraft, posts, users } from '@/utils/sampleData';
 import { STOCK_PHOTOS } from '@/utils/stockPhotos';
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
   },
   nextText: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.accent,
   },
   nextTextDisabled: {
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
   },
   editPillText: {
     ...typography.caption,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
     color: colors.textOnDark,
   },
   photoGrid: {
@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
   },
   chipTextSelected: {
     color: colors.textOnDark,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
   },
   listOption: {
     flexDirection: 'row',
@@ -447,7 +447,7 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textOnDark,
   },
   completeSection: {

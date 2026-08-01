@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Icon } from '@/components/Icon';
-import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
+import { colors, radii, spacing, typography } from '@/theme';
 import { formatNumber, formatRelativeTime } from '@/utils/format';
 import type { Comment, User } from '@/utils/types';
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   name: {
     ...typography.body,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
     color: colors.textPrimary,
   },
   time: {

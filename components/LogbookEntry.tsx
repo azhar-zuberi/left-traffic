@@ -1,6 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
+import { colors, radii, spacing, typography } from '@/theme';
 import { formatLogbookDate } from '@/utils/format';
 import type { Post } from '@/utils/types';
 
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...typography.body,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
     color: colors.textPrimary,
   },
   snippet: {

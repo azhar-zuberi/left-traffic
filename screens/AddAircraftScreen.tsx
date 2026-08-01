@@ -16,7 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FormField } from '@/components/FormField';
 import { Icon } from '@/components/Icon';
 import { StepIndicator, type Step } from '@/components/StepIndicator';
-import { colors, fontFamilies, radii, shadows, spacing, typography } from '@/theme';
+import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { aircraft } from '@/utils/sampleData';
 import { STOCK_PHOTOS } from '@/utils/stockPhotos';
 import type { Aircraft } from '@/utils/types';
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textOnDark,
   },
   resultSection: {
@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
   },
   resultTitle: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textPrimary,
   },
   resultSubtitle: {
@@ -467,7 +467,7 @@ const styles = StyleSheet.create({
   },
   manualLink: {
     ...typography.bodyMuted,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
     color: colors.accent,
   },
   formGroup: {

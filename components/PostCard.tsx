@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { Icon } from '@/components/Icon';
-import { colors, fontFamilies, radii, shadows, spacing, typography } from '@/theme';
+import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { formatNumber, formatRelativeTime } from '@/utils/format';
 import { CATEGORY_LABELS } from '@/utils/postCategories';
 import type { Aircraft, Post } from '@/utils/types';
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   registration: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textPrimary,
   },
   model: {
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...typography.body,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
     color: colors.textPrimary,
     marginTop: spacing.xs,
   },

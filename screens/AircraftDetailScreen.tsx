@@ -9,7 +9,7 @@ import { SegmentedTabs } from '@/components/SegmentedTabs';
 import { SpecRow } from '@/components/SpecRow';
 import { StatBlock } from '@/components/StatBlock';
 import { StatusPill } from '@/components/StatusPill';
-import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
+import { colors, radii, spacing, typography } from '@/theme';
 import { formatNumber } from '@/utils/format';
 import { aircraft, posts } from '@/utils/sampleData';
 import type { Post } from '@/utils/types';
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   },
   viewAll: {
     ...typography.bodyMuted,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
     color: colors.accent,
   },
   photosScroll: {
