@@ -6,9 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
-import { aircraft } from '@/utils/sampleData';
 
-const HERO_PHOTO = (aircraft.find((a) => a.id === 'a1') ?? aircraft[0]).heroPhotoUrl;
+const HERO_PHOTO = require('@/assets/images/splash-sunset.png');
 
 function enterApp() {
   router.replace('/(tabs)');
@@ -17,7 +16,11 @@ function enterApp() {
 export function LoginScreen() {
   return (
     <View style={styles.container}>
-      <Image source={{ uri: HERO_PHOTO }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+      <Image
+        source={HERO_PHOTO}
+        style={[StyleSheet.absoluteFill, styles.heroImage]}
+        resizeMode="cover"
+      />
       <LinearGradient
         colors={['transparent', 'rgba(11,18,32,0.5)', colors.backgroundDark]}
         locations={[0, 0.55, 0.88]}
@@ -68,6 +71,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.backgroundDark,
+  },
+  heroImage: {
+    width: '100%',
+    height: '100%',
   },
   safeArea: {
     flex: 1,
