@@ -18,6 +18,7 @@ import { FormField } from '@/components/FormField';
 import { StepIndicator, type Step } from '@/components/StepIndicator';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { aircraft } from '@/utils/sampleData';
+import { STOCK_PHOTOS } from '@/utils/stockPhotos';
 import type { Aircraft } from '@/utils/types';
 
 type StepKey = 'identify' | 'details' | 'photos' | 'complete';
@@ -30,14 +31,6 @@ const STEPS: Step[] = [
   { key: 'photos', label: 'Photos', icon: 'camera-outline' },
   { key: 'complete', label: 'Complete', icon: 'checkmark-outline' },
 ];
-
-// A curated stock gallery to pick from — this prototype has no device photo
-// library or upload pipeline, so "adding photos" means selecting from the
-// same aviation photography already used across sample-data.
-const PHOTO_OPTIONS = Array.from(new Set(aircraft.flatMap((a) => [a.heroPhotoUrl, ...a.photos]))).slice(
-  0,
-  15,
-);
 
 type Draft = {
   registration: string;
@@ -293,7 +286,7 @@ export function AddAircraftScreen() {
               </View>
 
               <View style={styles.photoGrid}>
-                {PHOTO_OPTIONS.map((url) => {
+                {STOCK_PHOTOS.map((url) => {
                   const selected = draft.photos.includes(url);
                   return (
                     <Pressable key={url} onPress={() => togglePhoto(url)} style={styles.photoTile}>

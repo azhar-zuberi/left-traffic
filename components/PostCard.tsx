@@ -4,23 +4,13 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { formatNumber, formatRelativeTime } from '@/utils/format';
-import type { Aircraft, Post, PostCategory } from '@/utils/types';
+import { CATEGORY_LABELS } from '@/utils/postCategories';
+import type { Aircraft, Post } from '@/utils/types';
 
 type Props = {
   post: Post;
   aircraft: Aircraft;
   onPress: () => void;
-};
-
-const CATEGORY_LABELS: Record<PostCategory, string> = {
-  upgrade: 'Upgrade',
-  flight: 'Flight',
-  inspection: 'Inspection',
-  milestone: 'Milestone',
-  overhaul: 'Overhaul',
-  flyout: 'Fly-Out',
-  event: 'Event',
-  trip: 'Trip',
 };
 
 export function PostCard({ post, aircraft, onPress }: Props) {
