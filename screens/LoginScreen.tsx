@@ -30,9 +30,10 @@ export function LoginScreen() {
 
       <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
         <View style={styles.brandBlock}>
-          <BrandMark size={44} color={colors.textPrimary} style={styles.brandIcon} />
-          <Text style={styles.wordmark}>Left{'\n'}Traffic</Text>
-          <Text style={styles.tagline}>A home for every aircraft you love.</Text>
+          <BrandMark size={65} color={colors.textPrimary} style={styles.brandIcon} />
+          <View style={styles.wordmarkBorder}>
+            <Text style={styles.wordmark}>Left Traffic</Text>
+          </View>
         </View>
 
         <View style={styles.actions}>
@@ -87,10 +88,17 @@ const styles = StyleSheet.create({
   },
   brandBlock: {
     alignItems: 'center',
-    marginTop: spacing.xl,
+    marginTop: '15%',
   },
   brandIcon: {
     marginBottom: spacing.sm,
+  },
+  wordmarkBorder: {
+    borderWidth: 2,
+    borderColor: colors.textPrimary,
+    borderRadius: radii.md,
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.md,
   },
   wordmark: {
     ...typography.screenTitle,
@@ -99,12 +107,6 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     color: colors.textPrimary,
     textAlign: 'center',
-  },
-  tagline: {
-    ...typography.body,
-    color: colors.textSecondary,
-    textAlign: 'center',
-    marginTop: spacing.sm,
   },
   actions: {
     gap: spacing.md,
