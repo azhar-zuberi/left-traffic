@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -14,6 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FormField } from '@/components/FormField';
+import { Icon } from '@/components/Icon';
 import { SettingsRow } from '@/components/SettingsRow';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { users } from '@/utils/sampleData';
@@ -36,7 +36,7 @@ export function SettingsScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={22} color={colors.textPrimary} />
+            <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
           <Text style={styles.headerTitle}>Settings</Text>
           <View style={styles.headerSpacer} />
@@ -101,7 +101,7 @@ export function SettingsScreen() {
 
           <Text style={styles.sectionLabel}>About</Text>
           <View style={styles.listCard}>
-            <SettingsRow icon="information-circle-outline" label="Digital Hangar" right={<Text style={styles.value}>Prototype</Text>} />
+            <SettingsRow icon="information-circle-outline" label="Left Traffic" right={<Text style={styles.value}>Prototype</Text>} />
           </View>
 
           <Pressable

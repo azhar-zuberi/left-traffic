@@ -1,9 +1,9 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Icon } from '@/components/Icon';
 import { LogbookEntry } from '@/components/LogbookEntry';
 import { SegmentedTabs } from '@/components/SegmentedTabs';
 import { SpecRow } from '@/components/SpecRow';
@@ -69,7 +69,7 @@ export function AircraftDetailScreen() {
             style={[styles.backButton, { top: insets.top + spacing.sm }]}
             hitSlop={8}
           >
-            <Ionicons name="chevron-back" size={22} color={colors.textOnDark} />
+            <Icon name="chevron-back" size={22} color={colors.textOnDark} />
           </Pressable>
         </View>
 

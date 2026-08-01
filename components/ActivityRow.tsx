@@ -1,6 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { Icon, type IconName } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 import { formatRelativeTime } from '@/utils/format';
 import type { ActivityType } from '@/utils/types';
@@ -15,7 +15,7 @@ type Props = {
 
 const TYPE_META: Record<
   ActivityType,
-  { icon: keyof typeof Ionicons.glyphMap; color: string; verb: string }
+  { icon: IconName; color: string; verb: string }
 > = {
   like: { icon: 'heart', color: colors.like, verb: 'liked your post' },
   comment: { icon: 'chatbubble', color: colors.accent, verb: 'commented on your post' },
@@ -34,7 +34,7 @@ export function ActivityRow({ type, avatarUrl, actorName, createdAt, onPress }: 
       <View style={styles.avatarWrap}>
         <Image source={{ uri: avatarUrl }} style={styles.avatar} />
         <View style={[styles.badge, { backgroundColor: meta.color }]}>
-          <Ionicons name={meta.icon} size={10} color={colors.textOnDark} />
+          <Icon name={meta.icon} size={10} color={colors.textOnDark} />
         </View>
       </View>
 

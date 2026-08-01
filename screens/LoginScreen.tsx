@@ -4,10 +4,10 @@ import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
-import { aircraft } from '@/utils/sampleData';
 
-const HERO_PHOTO = (aircraft.find((a) => a.id === 'a1') ?? aircraft[0]).heroPhotoUrl;
+const HERO_PHOTO = require('@/assets/images/splash-sunset.png');
 
 function enterApp() {
   router.replace('/(tabs)');
@@ -16,7 +16,11 @@ function enterApp() {
 export function LoginScreen() {
   return (
     <View style={styles.container}>
-      <Image source={{ uri: HERO_PHOTO }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+      <Image
+        source={HERO_PHOTO}
+        style={[StyleSheet.absoluteFill, styles.heroImage]}
+        resizeMode="cover"
+      />
       <LinearGradient
         colors={['transparent', 'rgba(11,18,32,0.5)', colors.backgroundDark]}
         locations={[0, 0.55, 0.88]}
@@ -25,8 +29,8 @@ export function LoginScreen() {
 
       <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
         <View style={styles.brandBlock}>
-          <Ionicons name="airplane" size={30} color={colors.textPrimary} style={styles.brandIcon} />
-          <Text style={styles.wordmark}>Digital{'\n'}Hangar</Text>
+          <Icon name="airplane" size={30} color={colors.textPrimary} style={styles.brandIcon} />
+          <Text style={styles.wordmark}>Left{'\n'}Traffic</Text>
           <Text style={styles.tagline}>A home for every aircraft you love.</Text>
         </View>
 
@@ -53,7 +57,7 @@ export function LoginScreen() {
 
           <View style={styles.footerDivider}>
             <View style={styles.dividerLine} />
-            <Ionicons name="ribbon-outline" size={16} color={colors.textOnDarkMuted} />
+            <Icon name="ribbon-outline" size={16} color={colors.textOnDarkMuted} />
             <View style={styles.dividerLine} />
           </View>
           <Text style={styles.footerText}>Built by pilots. For pilots.</Text>
@@ -67,6 +71,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.backgroundDark,
+  },
+  heroImage: {
+    width: '100%',
+    height: '100%',
   },
   safeArea: {
     flex: 1,

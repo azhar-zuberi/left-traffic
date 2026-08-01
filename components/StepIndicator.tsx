@@ -1,13 +1,13 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Fragment } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { Icon, type IconName } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 
 export type Step = {
   key: string;
   label: string;
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: IconName;
 };
 
 type Props = {
@@ -26,7 +26,7 @@ export function StepIndicator({ steps, activeIndex }: Props) {
           <Fragment key={step.key}>
             <View style={styles.stepItem}>
               <View style={[styles.circle, reached ? styles.circleActive : styles.circleInactive]}>
-                <Ionicons
+                <Icon
                   name={step.icon}
                   size={16}
                   color={reached ? colors.textOnDark : colors.textMuted}

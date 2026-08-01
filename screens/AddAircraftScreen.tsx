@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -15,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FormField } from '@/components/FormField';
+import { Icon } from '@/components/Icon';
 import { StepIndicator, type Step } from '@/components/StepIndicator';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { aircraft } from '@/utils/sampleData';
@@ -123,7 +123,7 @@ export function AddAircraftScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={goBack} hitSlop={8} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={22} color={colors.textPrimary} />
+            <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
           <Text style={styles.headerTitle}>Add Aircraft</Text>
           <View style={styles.headerSpacer} />
@@ -164,7 +164,7 @@ export function AddAircraftScreen() {
                       }}
                       hitSlop={8}
                     >
-                      <Ionicons name="close-circle" size={20} color={colors.textMuted} />
+                      <Icon name="close-circle" size={20} color={colors.textMuted} />
                     </Pressable>
                   )}
                 </View>
@@ -195,7 +195,7 @@ export function AddAircraftScreen() {
                       </Text>
                       <Text style={styles.resultSubtitle}>Serial Number: {lookupResult.serialNumber}</Text>
                     </View>
-                    <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
+                    <Icon name="chevron-forward" size={18} color={colors.textMuted} />
                   </Pressable>
                 </View>
               )}
@@ -292,7 +292,7 @@ export function AddAircraftScreen() {
                     <Pressable key={url} onPress={() => togglePhoto(url)} style={styles.photoTile}>
                       <Image source={{ uri: url }} style={styles.photoImage} />
                       <View style={[styles.photoCheck, selected && styles.photoCheckSelected]}>
-                        {selected && <Ionicons name="checkmark" size={14} color={colors.textOnDark} />}
+                        {selected && <Icon name="checkmark" size={14} color={colors.textOnDark} />}
                       </View>
                     </Pressable>
                   );
@@ -315,7 +315,7 @@ export function AddAircraftScreen() {
           {step === 'complete' && (
             <View style={styles.completeSection}>
               <View style={styles.successIcon}>
-                <Ionicons name="checkmark" size={32} color={colors.textOnDark} />
+                <Icon name="checkmark" size={32} color={colors.textOnDark} />
               </View>
               {draft.photos[0] && <Image source={{ uri: draft.photos[0] }} style={styles.completePhoto} />}
               <Text style={styles.completeTitle}>{draft.registration} added to your hangar</Text>

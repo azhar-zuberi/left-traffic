@@ -1,11 +1,11 @@
-import { Ionicons } from '@expo/vector-icons';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { Icon, type IconName } from '@/components/Icon';
 import { colors, spacing, typography } from '@/theme';
 
 type Props = {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: IconName;
   label: string;
   onPress?: () => void;
   right?: ReactNode;
@@ -15,7 +15,7 @@ type Props = {
 export function SettingsRow({ icon, label, onPress, right, destructive = false }: Props) {
   const content = (
     <View style={styles.row}>
-      <Ionicons name={icon} size={18} color={destructive ? colors.like : colors.textSecondary} />
+      <Icon name={icon} size={18} color={destructive ? colors.like : colors.textSecondary} />
       <Text style={[styles.label, destructive && styles.labelDestructive]}>{label}</Text>
       {right}
     </View>

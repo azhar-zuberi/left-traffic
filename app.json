@@ -1,20 +1,21 @@
 {
   "expo": {
-    "name": "Digital Hangar",
-    "slug": "digital-hangar-app",
+    "name": "Left Traffic",
+    "slug": "left-traffic",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "digitalhangar",
+    "scheme": "lefttraffic",
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mydigitalhangar.app",
+      "bundleIdentifier": "com.lefttraffic.app",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
+      "package": "com.lefttraffic.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

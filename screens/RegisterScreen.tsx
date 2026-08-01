@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FormField } from '@/components/FormField';
+import { Icon } from '@/components/Icon';
 import { SegmentedTabs } from '@/components/SegmentedTabs';
 import { colors, radii, spacing, typography } from '@/theme';
 
@@ -46,7 +46,7 @@ export function RegisterScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={22} color={colors.textPrimary} />
+            <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
           <Text style={styles.headerTitle}>Welcome</Text>
           <View style={styles.headerSpacer} />
@@ -93,7 +93,7 @@ export function RegisterScreen() {
           </Pressable>
 
           <Text style={styles.legalText}>
-            By continuing, you agree to Digital Hangar&rsquo;s Terms and Privacy Policy.
+            By continuing, you agree to Left Traffic&rsquo;s Terms and Privacy Policy.
           </Text>
         </View>
       </SafeAreaView>
