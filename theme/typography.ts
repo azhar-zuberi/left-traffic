@@ -1,79 +1,67 @@
-import { type TextStyle } from 'react-native';
+import { Platform, type TextStyle } from 'react-native';
 
-// Space Grotesk carries the display/heading tokens — its geometric, slightly technical
-// character suits the wide-tracked uppercase screen titles and reads closer to an
-// instrument face than a consumer-app font. Inter (Linear's own typeface, one of the
-// documented inspirations) carries body/label/caption for calm, highly legible small text.
-// Both loaded via @expo-google-fonts in app/_layout.tsx.
-const displayFamily = {
-  medium: 'SpaceGrotesk_500Medium',
-  semibold: 'SpaceGrotesk_600SemiBold',
-  bold: 'SpaceGrotesk_700Bold',
-};
-
-const bodyFamily = {
-  regular: 'Inter_400Regular',
-  medium: 'Inter_500Medium',
-  semibold: 'Inter_600SemiBold',
-  bold: 'Inter_700Bold',
-};
-
-// Static Google Fonts weight files don't respond to a separate `fontWeight` style —
-// each weight is its own named font. Anywhere text needs to look bolder than its
-// typography token, override `fontFamily` with one of these instead of `fontWeight`.
-export const fontFamilies = {
-  display: displayFamily,
-  body: bodyFamily,
-};
+// No custom typeface is loaded yet — system font (San Francisco / Roboto) stands in
+// until a type choice is made in a later design milestone. The editorial, wide-tracked
+// all-caps screen titles from the look-and-feel reference (MY HANGAR, FLIGHTLINE, ...)
+// are achieved here with letterSpacing + weight rather than a font family.
+const fontFamily = Platform.select({ ios: undefined, android: undefined, default: undefined });
 
 export const typography = {
   screenTitle: {
-    fontFamily: displayFamily.bold,
+    fontFamily,
     fontSize: 20,
+    fontWeight: '700',
     letterSpacing: 2.5,
     textTransform: 'uppercase',
   } as TextStyle,
 
   displayLarge: {
-    fontFamily: displayFamily.semibold,
+    fontFamily,
     fontSize: 32,
+    fontWeight: '600',
     letterSpacing: 0.2,
   } as TextStyle,
 
   heading: {
-    fontFamily: displayFamily.semibold,
+    fontFamily,
     fontSize: 22,
+    fontWeight: '600',
     letterSpacing: 0.2,
   } as TextStyle,
 
   subheading: {
-    fontFamily: displayFamily.medium,
+    fontFamily,
     fontSize: 17,
+    fontWeight: '600',
     letterSpacing: 0.1,
   } as TextStyle,
 
   body: {
-    fontFamily: bodyFamily.regular,
+    fontFamily,
     fontSize: 15,
+    fontWeight: '400',
     letterSpacing: 0.1,
   } as TextStyle,
 
   bodyMuted: {
-    fontFamily: bodyFamily.regular,
+    fontFamily,
     fontSize: 14,
+    fontWeight: '400',
     letterSpacing: 0.1,
   } as TextStyle,
 
   label: {
-    fontFamily: bodyFamily.semibold,
+    fontFamily,
     fontSize: 12,
+    fontWeight: '600',
     letterSpacing: 1.2,
     textTransform: 'uppercase',
   } as TextStyle,
 
   caption: {
-    fontFamily: bodyFamily.regular,
+    fontFamily,
     fontSize: 12,
+    fontWeight: '400',
     letterSpacing: 0.1,
   } as TextStyle,
 } as const;

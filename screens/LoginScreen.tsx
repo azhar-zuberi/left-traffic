@@ -5,7 +5,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon } from '@/components/Icon';
-import { colors, fontFamilies, radii, spacing, typography } from '@/theme';
+import { colors, radii, spacing, typography } from '@/theme';
 import { aircraft } from '@/utils/sampleData';
 
 const HERO_PHOTO = (aircraft.find((a) => a.id === 'a1') ?? aircraft[0]).heroPhotoUrl;
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   googleButtonText: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textOnDark,
   },
   appleButton: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   appleButtonText: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textPrimary,
   },
   moreOptions: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   moreOptionsText: {
     ...typography.bodyMuted,
-    fontFamily: fontFamilies.body.semibold,
+    fontWeight: '600',
     color: colors.textOnDark,
     textDecorationLine: 'underline',
   },

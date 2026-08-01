@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon } from '@/components/Icon';
 import { StatBlock } from '@/components/StatBlock';
-import { colors, fontFamilies, radii, shadows, spacing, typography } from '@/theme';
+import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { formatNumber } from '@/utils/format';
 import { aircraft, posts, users } from '@/utils/sampleData';
 import { CURRENT_USER_ID } from '@/utils/types';
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
   },
   aircraftReg: {
     ...typography.body,
-    fontFamily: fontFamilies.body.bold,
+    fontWeight: '700',
     color: colors.textPrimary,
     marginTop: spacing.sm,
   },
