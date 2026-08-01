@@ -10,6 +10,7 @@ type Props = {
   editable?: boolean;
   keyboardType?: TextInputProps['keyboardType'];
   autoCapitalize?: TextInputProps['autoCapitalize'];
+  multiline?: boolean;
 };
 
 export function FormField({
@@ -20,6 +21,7 @@ export function FormField({
   editable = true,
   keyboardType,
   autoCapitalize = 'words',
+  multiline = false,
 }: Props) {
   return (
     <View style={styles.container}>
@@ -32,7 +34,8 @@ export function FormField({
         editable={editable}
         keyboardType={keyboardType}
         autoCapitalize={autoCapitalize}
-        style={[styles.input, !editable && styles.inputDisabled]}
+        multiline={multiline}
+        style={[styles.input, multiline && styles.inputMultiline, !editable && styles.inputDisabled]}
       />
     </View>
   );
@@ -55,6 +58,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.md,
     backgroundColor: colors.surface,
+  },
+  inputMultiline: {
+    minHeight: 88,
+    textAlignVertical: 'top',
   },
   inputDisabled: {
     color: colors.textSecondary,
