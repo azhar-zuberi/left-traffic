@@ -1,5 +1,6 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { PostMedia } from '@/components/PostMedia';
 import { colors, radii, spacing, typography } from '@/theme';
 import { formatLogbookDate } from '@/utils/format';
 import type { Post } from '@/utils/types';
@@ -31,7 +32,7 @@ export function LogbookEntry({ post, onPress }: Props) {
         </Text>
       </View>
 
-      <Image source={{ uri: post.photoUrl }} style={styles.thumbnail} resizeMode="cover" />
+      <PostMedia post={post} style={styles.thumbnail} interactive={false} playBadgeSize={18} />
     </Pressable>
   );
 }

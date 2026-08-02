@@ -4,6 +4,7 @@ import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-nati
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon } from '@/components/Icon';
+import { PostMedia } from '@/components/PostMedia';
 import { StatBlock } from '@/components/StatBlock';
 import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
@@ -107,7 +108,7 @@ export function ProfileScreen() {
                   style={({ pressed }) => [styles.postTile, pressed && styles.postTilePressed]}
                   onPress={() => router.push(`/comments/${post.id}`)}
                 >
-                  <Image source={{ uri: post.photoUrl }} style={styles.postPhoto} resizeMode="cover" />
+                  <PostMedia post={post} style={styles.postPhoto} interactive={false} playBadgeSize={24} />
                 </Pressable>
               ))}
             </View>

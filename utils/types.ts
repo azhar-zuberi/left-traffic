@@ -59,6 +59,8 @@ export type PostLocation = {
   state: string;
 };
 
+export type PostMediaType = 'photo' | 'video';
+
 export type Post = {
   id: string;
   aircraftId: string;
@@ -68,7 +70,14 @@ export type Post = {
   body: string;
   location: PostLocation;
   createdAt: string;
-  photoUrl: string;
+  mediaType: PostMediaType;
+  // The photo itself, or the video file, picked/captured on-device.
+  mediaUrl: string;
+  // Extracted first-frame poster for video posts — grid/list views (feed
+  // cards, Logbook rows, Profile grid) render this instead of decoding the
+  // video just to show a static thumbnail. Photos don't need one; mediaUrl
+  // already is the thumbnail.
+  thumbnailUrl?: string;
   likeCount: number;
   commentCount: number;
 };

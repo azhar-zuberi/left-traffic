@@ -12,7 +12,8 @@
       "state": "CA"
     },
     "createdAt": "2022-08-11T16:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1521087845985-bb33bd132825?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1521087845985-bb33bd132825?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 88,
     "commentCount": 3
   },
@@ -29,7 +30,8 @@
       "state": "CA"
     },
     "createdAt": "2023-10-05T10:30:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1761813409593-f9e271cea56a?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1761813409593-f9e271cea56a?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 56,
     "commentCount": 1
   },
@@ -46,7 +48,8 @@
       "state": "CA"
     },
     "createdAt": "2024-12-14T14:00:00-08:00",
-    "photoUrl": "https://images.unsplash.com/photo-1511140276483-30c1217ca449?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1511140276483-30c1217ca449?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 74,
     "commentCount": 1
   },
@@ -63,7 +66,8 @@
       "state": "CA"
     },
     "createdAt": "2026-03-29T09:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1765574780331-83f62623de02?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1765574780331-83f62623de02?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 39,
     "commentCount": 1
   },
@@ -80,7 +84,8 @@
       "state": "CA"
     },
     "createdAt": "2026-05-02T19:45:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1764705639436-ab4f0e6d5f7b?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1764705639436-ab4f0e6d5f7b?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 61,
     "commentCount": 2
   },
@@ -97,7 +102,8 @@
       "state": "CA"
     },
     "createdAt": "2026-07-31T09:15:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1761813409462-9329c23c7541?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1761813409462-9329c23c7541?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 42,
     "commentCount": 6
   },
@@ -114,7 +120,8 @@
       "state": "CA"
     },
     "createdAt": "2026-04-10T08:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1518566107615-f7267099eced?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1518566107615-f7267099eced?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 21,
     "commentCount": 1
   },
@@ -131,7 +138,8 @@
       "state": "CA"
     },
     "createdAt": "2025-11-02T11:00:00-08:00",
-    "photoUrl": "https://images.unsplash.com/photo-1784487692127-6197f4783c73?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1784487692127-6197f4783c73?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 67,
     "commentCount": 1
   },
@@ -148,7 +156,8 @@
       "state": "CA"
     },
     "createdAt": "2026-06-14T09:30:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1604251204948-22773e22a03d?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1604251204948-22773e22a03d?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 33,
     "commentCount": 1
   },
@@ -165,7 +174,8 @@
       "state": "BC"
     },
     "createdAt": "2026-07-30T15:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1541611666598-71d25303fb88?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1541611666598-71d25303fb88?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 29,
     "commentCount": 1
   },
@@ -182,7 +192,8 @@
       "state": "BC"
     },
     "createdAt": "2026-02-18T10:00:00-08:00",
-    "photoUrl": "https://images.unsplash.com/photo-1585916788784-64aa099fec1f?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1585916788784-64aa099fec1f?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 18,
     "commentCount": 0
   },
@@ -199,7 +210,8 @@
       "state": "BC"
     },
     "createdAt": "2026-05-24T09:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1569938709389-ff8ab00530b3?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1569938709389-ff8ab00530b3?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 24,
     "commentCount": 0
   },
@@ -216,7 +228,8 @@
       "state": "CO"
     },
     "createdAt": "2015-09-12T13:00:00-06:00",
-    "photoUrl": "https://images.unsplash.com/photo-1619659085985-f51a00f0160a?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1619659085985-f51a00f0160a?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 214,
     "commentCount": 4
   },
@@ -233,7 +246,8 @@
       "state": "WI"
     },
     "createdAt": "2025-07-22T12:00:00-05:00",
-    "photoUrl": "https://images.unsplash.com/photo-1522474252234-127492dde7f4?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1522474252234-127492dde7f4?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 156,
     "commentCount": 3
   },
@@ -250,7 +264,8 @@
       "state": "CO"
     },
     "createdAt": "2024-03-09T10:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1737059217479-1f3ee86b5708?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1737059217479-1f3ee86b5708?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 98,
     "commentCount": 1
   },
@@ -267,7 +282,8 @@
       "state": "CA"
     },
     "createdAt": "2026-07-18T09:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1649886535045-246644def7d4?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1649886535045-246644def7d4?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 14,
     "commentCount": 1
   },
@@ -284,7 +300,8 @@
       "state": "CA"
     },
     "createdAt": "2025-08-30T16:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1558027218-ffbb6a8301af?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1558027218-ffbb6a8301af?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 52,
     "commentCount": 1
   },
@@ -301,7 +318,8 @@
       "state": "WI"
     },
     "createdAt": "2025-07-25T08:00:00-05:00",
-    "photoUrl": "https://images.unsplash.com/photo-1585004873570-03667cd262de?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1585004873570-03667cd262de?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 133,
     "commentCount": 2
   },
@@ -318,7 +336,8 @@
       "state": "CA"
     },
     "createdAt": "2026-06-05T15:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1494264274944-1ba7d9b73135?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1494264274944-1ba7d9b73135?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 47,
     "commentCount": 1
   },
@@ -335,7 +354,8 @@
       "state": "CA"
     },
     "createdAt": "2025-01-20T11:00:00-08:00",
-    "photoUrl": "https://images.unsplash.com/photo-1694160027547-b0696cf1ad45?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1694160027547-b0696cf1ad45?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 31,
     "commentCount": 0
   },
@@ -352,7 +372,8 @@
       "state": "CA"
     },
     "createdAt": "2021-11-15T14:00:00-08:00",
-    "photoUrl": "https://images.unsplash.com/photo-1708651425547-d5410c1caa44?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1708651425547-d5410c1caa44?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 121,
     "commentCount": 2
   },
@@ -369,7 +390,8 @@
       "state": "BC"
     },
     "createdAt": "2026-03-02T17:00:00-08:00",
-    "photoUrl": "https://images.unsplash.com/photo-1771698056836-bff8a280afe6?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1771698056836-bff8a280afe6?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 68,
     "commentCount": 1
   },
@@ -386,7 +408,8 @@
       "state": "CA"
     },
     "createdAt": "2026-05-18T19:30:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1672277438853-43ffaeab2b41?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1672277438853-43ffaeab2b41?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 89,
     "commentCount": 2
   },
@@ -403,7 +426,8 @@
       "state": "CA"
     },
     "createdAt": "2024-09-11T10:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1521900092653-4bf38fcd896a?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1521900092653-4bf38fcd896a?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 76,
     "commentCount": 1
   },
@@ -420,7 +444,8 @@
       "state": "CA"
     },
     "createdAt": "2026-06-21T09:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1590248850529-a6638bb7bca6?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1590248850529-a6638bb7bca6?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 22,
     "commentCount": 0
   },
@@ -437,7 +462,8 @@
       "state": "CA"
     },
     "createdAt": "2023-06-08T10:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1503379230423-19c53f7e9a33?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1503379230423-19c53f7e9a33?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 41,
     "commentCount": 1
   },
@@ -454,7 +480,8 @@
       "state": "CA"
     },
     "createdAt": "2026-01-14T09:00:00-08:00",
-    "photoUrl": "https://images.unsplash.com/photo-1737059210461-3e5262d606e6?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1737059210461-3e5262d606e6?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 37,
     "commentCount": 1
   },
@@ -471,7 +498,8 @@
       "state": "CA"
     },
     "createdAt": "2023-05-14T11:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1680627259725-2c7da3686b97?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1680627259725-2c7da3686b97?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 143,
     "commentCount": 2
   },
@@ -488,7 +516,8 @@
       "state": "CA"
     },
     "createdAt": "2026-06-28T13:00:00-07:00",
-    "photoUrl": "https://images.unsplash.com/photo-1594973841081-ec0c9c7e3064?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1594973841081-ec0c9c7e3064?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 92,
     "commentCount": 2
   },
@@ -505,7 +534,8 @@
       "state": "ID"
     },
     "createdAt": "2025-08-05T12:00:00-06:00",
-    "photoUrl": "https://images.unsplash.com/photo-1617028835586-99e53772e453?w=1200&q=80&auto=format&fit=crop",
+    "mediaType": "photo",
+    "mediaUrl": "https://images.unsplash.com/photo-1617028835586-99e53772e453?w=1200&q=80&auto=format&fit=crop",
     "likeCount": 187,
     "commentCount": 3
   }

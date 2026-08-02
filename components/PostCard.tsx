@@ -4,6 +4,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ActionSheet } from '@/components/ActionSheet';
 import { Icon } from '@/components/Icon';
+import { PostMedia } from '@/components/PostMedia';
 import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { formatNumber, formatRelativeTime } from '@/utils/format';
@@ -55,7 +56,7 @@ export function PostCard({ post, aircraft, onPress, onDeleted }: Props) {
           <Text style={styles.time}>{formatRelativeTime(post.createdAt)}</Text>
         </View>
 
-        <Image source={{ uri: post.photoUrl }} style={styles.photo} resizeMode="cover" />
+        <PostMedia post={post} style={styles.photo} />
 
         <View style={styles.body}>
           <Text style={styles.category}>{CATEGORY_LABELS[post.category]}</Text>
