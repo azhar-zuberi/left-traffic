@@ -275,6 +275,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: spacing.lg,
+    paddingTop: spacing.md,
     paddingBottom: spacing.md,
   },
   backButton: {
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   nextButton: {
-    width: 32,
+    minWidth: 32,
     alignItems: 'flex-end',
   },
   nextText: {
