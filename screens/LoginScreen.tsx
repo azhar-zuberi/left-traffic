@@ -4,10 +4,11 @@ import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { BrandMark } from '@/components/BrandMark';
 import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 
-const HERO_PHOTO = require('@/assets/images/splash-sunset.png');
+const HERO_PHOTO = require('@/assets/images/splash2.jpg');
 
 function enterApp() {
   router.replace('/(tabs)');
@@ -29,9 +30,10 @@ export function LoginScreen() {
 
       <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
         <View style={styles.brandBlock}>
-          <Icon name="airplane" size={30} color={colors.textPrimary} style={styles.brandIcon} />
-          <Text style={styles.wordmark}>Left{'\n'}Traffic</Text>
-          <Text style={styles.tagline}>A home for every aircraft you love.</Text>
+          <BrandMark size={65} color={colors.textPrimary} style={styles.brandIcon} />
+          <View style={styles.wordmarkBorder}>
+            <Text style={styles.wordmark}>Left Traffic</Text>
+          </View>
         </View>
 
         <View style={styles.actions}>
@@ -71,10 +73,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.backgroundDark,
+    overflow: 'hidden',
   },
   heroImage: {
     width: '100%',
-    height: '100%',
+    height: '112%',
+    top: '-20%',
   },
   safeArea: {
     flex: 1,
@@ -84,10 +88,17 @@ const styles = StyleSheet.create({
   },
   brandBlock: {
     alignItems: 'center',
-    marginTop: spacing.xl,
+    marginTop: '15%',
   },
   brandIcon: {
     marginBottom: spacing.sm,
+  },
+  wordmarkBorder: {
+    borderWidth: 2,
+    borderColor: colors.textPrimary,
+    borderRadius: radii.md,
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.md,
   },
   wordmark: {
     ...typography.screenTitle,
@@ -96,12 +107,6 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
     color: colors.textPrimary,
     textAlign: 'center',
-  },
-  tagline: {
-    ...typography.body,
-    color: colors.textSecondary,
-    textAlign: 'center',
-    marginTop: spacing.sm,
   },
   actions: {
     gap: spacing.md,
