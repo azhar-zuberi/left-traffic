@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
+import { AppDataProvider } from '@/hooks/useAppData';
 import { colors } from '@/theme';
 
 // No authentication in this prototype (docs/left-traffic-front-end-prototype.md) —
@@ -21,16 +22,19 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <StatusBar style="auto" />
-        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
-          <Stack.Screen name="login" />
-          <Stack.Screen name="register" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="aircraft/[aircraftId]" />
-          <Stack.Screen name="comments/[postId]" options={{ presentation: 'card' }} />
-          <Stack.Screen name="add-aircraft" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="new-post" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="settings" />
-        </Stack>
+        <AppDataProvider>
+          <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
+            <Stack.Screen name="login" />
+            <Stack.Screen name="register" options={{ presentation: 'modal' }} />
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="aircraft/[aircraftId]" />
+            <Stack.Screen name="comments/[postId]" options={{ presentation: 'card' }} />
+            <Stack.Screen name="add-aircraft" options={{ presentation: 'modal' }} />
+            <Stack.Screen name="edit-aircraft" options={{ presentation: 'modal' }} />
+            <Stack.Screen name="new-post" options={{ presentation: 'modal' }} />
+            <Stack.Screen name="settings" />
+          </Stack>
+        </AppDataProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

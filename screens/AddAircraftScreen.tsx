@@ -16,10 +16,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FormField } from '@/components/FormField';
 import { Icon } from '@/components/Icon';
 import { StepIndicator, type Step } from '@/components/StepIndicator';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
-import { aircraft } from '@/utils/sampleData';
 import { STOCK_PHOTOS } from '@/utils/stockPhotos';
-import type { Aircraft } from '@/utils/types';
+import { CURRENT_USER_ID, type Aircraft } from '@/utils/types';
 
 type StepKey = 'identify' | 'details' | 'photos' | 'complete';
 
@@ -55,11 +55,17 @@ const EMPTY_DRAFT: Draft = {
 };
 
 export function AddAircraftScreen() {
+  const { aircraft, addAircraft } = useAppData();
   const [step, setStep] = useState<StepKey>('identify');
   const [tailInput, setTailInput] = useState('');
   const [lookupState, setLookupState] = useState<'idle' | 'found' | 'not-found'>('idle');
   const [lookupResult, setLookupResult] = useState<Aircraft | null>(null);
   const [draft, setDraft] = useState<Draft>(EMPTY_DRAFT);
+  // Only set when the draft was seeded from a real registry match, so we can
+  // reuse its spec fields (horsepower, cruiseSpeed, etc.) that the manual
+  // form never collects. Cleared on the manual-entry path so an unrelated
+  // earlier lookup can't leak its specs onto a different aircraft.
+  const [matchedAircraft, setMatchedAircraft] = useState<Aircraft | null>(null);
 
   function updateDraft(patch: Partial<Draft>) {
     setDraft((prev) => ({ ...prev, ...patch }));
@@ -89,12 +95,41 @@ export function AddAircraftScreen() {
       homeAirport: lookupResult.homeAirport,
       photos: [],
     });
+    setMatchedAircraft(lookupResult);
     setStep('details');
   }
 
   function continueManually() {
     setDraft({ ...EMPTY_DRAFT, registration: tailInput.trim().toUpperCase() });
+    setMatchedAircraft(null);
     setStep('details');
+  }
+
+  function handleAddToHangar() {
+    const now = new Date().toISOString();
+    const record: Aircraft = {
+      id: `a-${Date.now()}`,
+      registration: draft.registration,
+      manufacturer: draft.manufacturer,
+      model: draft.model,
+      year: Number(draft.year) || 0,
+      serialNumber: draft.serialNumber,
+      engine: draft.engine,
+      horsepower: matchedAircraft?.horsepower ?? 0,
+      propeller: matchedAircraft?.propeller ?? '',
+      usefulLoad: matchedAircraft?.usefulLoad ?? 0,
+      cruiseSpeed: matchedAircraft?.cruiseSpeed ?? 0,
+      range: matchedAircraft?.range ?? 0,
+      homeAirport: draft.homeAirport,
+      totalHours: matchedAircraft?.totalHours ?? 0,
+      status: matchedAircraft?.status ?? 'flying',
+      heroPhotoUrl: draft.photos[0] ?? STOCK_PHOTOS[0],
+      photos: draft.photos,
+      currentOwnerId: CURRENT_USER_ID,
+      ownershipHistory: [{ userId: CURRENT_USER_ID, startDate: now, endDate: null }],
+    };
+    addAircraft(record);
+    setStep('complete');
   }
 
   function togglePhoto(url: string) {
@@ -300,7 +335,7 @@ export function AddAircraftScreen() {
               </View>
 
               <Pressable
-                onPress={() => setStep('complete')}
+                onPress={handleAddToHangar}
                 disabled={draft.photos.length === 0}
                 style={({ pressed }) => [
                   styles.primaryButton,

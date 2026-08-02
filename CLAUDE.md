@@ -65,7 +65,9 @@ Route map (`app/_layout.tsx` root `Stack`):
   never actually shown: its `tabPress` is intercepted in `(tabs)/_layout.tsx` to push `/new-post`
   as a modal instead of switching tabs. This is how the center **+** FAB works.
 - `aircraft/[aircraftId]`, `comments/[postId]` — dynamic stack routes.
-- `add-aircraft`, `new-post` — presented as modals.
+- `add-aircraft`, `edit-aircraft`, `new-post` — presented as modals.
+  `edit-aircraft` and `new-post` (when passed a `postId` param) both double
+  as edit screens for an existing record.
 - `settings` — plain stack route off Profile.
 
 ### Data layer: `sample-data/` + `utils/`
@@ -97,6 +99,14 @@ Two modeling decisions that aren't obvious from the schema alone:
 
 `Post.aircraftId` is the primary relationship (whose story this is); `Post.authorId` is who wrote
 it. They can diverge over time as ownership changes — that's intentional, not a bug.
+
+### Dialogs and menus: `components/ActionSheet.tsx`
+
+Don't use `Alert.alert` or `ActionSheetIOS` for confirms/option menus — `Alert.alert` is a
+no-op on `react-native-web` (silently does nothing, no error) and `ActionSheetIOS` only exists
+on iOS, so either one breaks under `npm run web`. Use the shared `components/ActionSheet.tsx`
+(a `Modal`-based bottom sheet) instead; it works the same way on iOS, Android, and web. See it
+in use in `PostCard` (edit/delete menu) and `CommentRow` (delete confirm).
 
 ### Theme: `theme/`
 

@@ -5,23 +5,25 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AircraftCard } from '@/components/AircraftCard';
 import { Icon } from '@/components/Icon';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, spacing, typography } from '@/theme';
-import { aircraft, posts } from '@/utils/sampleData';
 import { CURRENT_USER_ID, type Aircraft } from '@/utils/types';
 
 const ADVENTURE_CATEGORIES = new Set(['trip', 'flight', 'flyout', 'event']);
 
-const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
-
-function countPosts(aircraftId: string) {
-  return posts.filter((p) => p.aircraftId === aircraftId).length;
-}
-
-function countAdventures(aircraftId: string) {
-  return posts.filter((p) => p.aircraftId === aircraftId && ADVENTURE_CATEGORIES.has(p.category)).length;
-}
-
 export function MyHangarScreen() {
+  const { aircraft, posts } = useAppData();
+  const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
+
+  function countPosts(aircraftId: string) {
+    return posts.filter((p) => p.aircraftId === aircraftId).length;
+  }
+
+  function countAdventures(aircraftId: string) {
+    return posts.filter((p) => p.aircraftId === aircraftId && ADVENTURE_CATEGORIES.has(p.category))
+      .length;
+  }
+
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <View style={styles.header}>

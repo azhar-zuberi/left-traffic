@@ -26,18 +26,20 @@ Create and edit aircraft profiles.
 No delete. Aircraft are the permanent entity (`docs/PRODUCT_VISION.md`) — v1
 does not build a way to remove one from My Hangar. See "Aircraft removal" below.
 
-Add Aircraft already has a full "Identify → Details → Photos → Complete" flow
-that ends on a success screen without writing anything to `aircraft`. Wiring
-the real `addAircraft` call on completion is part of this milestone, not a
-later one — see the no-fake-success-states rule above.
+Add Aircraft's "Identify → Details → Photos → Complete" flow calls the real
+`addAircraft` on completion. Edit lives behind a pencil icon on the aircraft's
+hero photo (swap the cover photo) and a "•••" menu below it (edit the spec
+fields, via `EditAircraftScreen` / `updateAircraft`).
 
 Create, edit, and delete posts.
 
-New Post already has a full compose flow that ends on a success screen
-without writing anything to `posts`. Wiring the real `addPost` call on
-completion is part of this milestone too, for the same reason.
+New Post's compose flow calls the real `addPost` on completion. Edit and
+delete live behind a "•••" menu on `PostCard`, owner-gated — edit re-opens
+the same compose screen pre-filled and calls `updatePost`; delete confirms
+once, then calls `deletePost`.
 
-Create and edit user profile (the Settings form already exists — wire it up).
+Create and edit user profile — the Settings form is wired to `updateUser`
+via a header Save action.
 
 View everyone's posts. Like and unlike posts.
 
@@ -47,7 +49,8 @@ deliberate v1 choice, not a placeholder — see "Follow / unfollow" below.
 Comment on posts. Delete your own comments.
 
 No comment editing — deleting and re-adding covers typos. This gives comments
-lighter-weight parity with posts rather than full CRUD.
+lighter-weight parity with posts rather than full CRUD. Delete lives behind a
+trash icon on your own comments (`deleteComment`), confirmed once before it's gone.
 
 View Activity (likes and comments on your own posts).
 

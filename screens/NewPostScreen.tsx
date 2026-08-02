@@ -1,5 +1,5 @@
-import { router } from 'expo-router';
-import { useState, type ReactNode } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useMemo, useState, type ReactNode } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -14,37 +14,87 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon, type IconName } from '@/components/Icon';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, spacing, typography } from '@/theme';
 import { CATEGORY_LABELS, POST_CATEGORIES } from '@/utils/postCategories';
-import { aircraft, posts, users } from '@/utils/sampleData';
 import { STOCK_PHOTOS } from '@/utils/stockPhotos';
-import { CURRENT_USER_ID, type PostCategory, type PostLocation } from '@/utils/types';
-
-const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
-const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
-
-const LOCATIONS: PostLocation[] = Array.from(
-  new Map(posts.map((p) => [p.location.airportCode, p.location])).values(),
-);
-const DEFAULT_LOCATION =
-  LOCATIONS.find((l) => l.airportCode === currentUser.homeAirport) ?? LOCATIONS[0];
+import { CURRENT_USER_ID, type Post, type PostCategory, type PostLocation } from '@/utils/types';
 
 type ExpandedField = 'photo' | 'category' | 'location' | 'aircraft' | null;
 
+// Derives a short headline from the caption's first line since the compose
+// flow only collects one free-text field, not a separate title.
+function deriveTitle(caption: string): string {
+  const firstLine = caption.trim().split('\n')[0];
+  return firstLine.length > 60 ? `${firstLine.slice(0, 57)}…` : firstLine;
+}
+
 export function NewPostScreen() {
-  const [caption, setCaption] = useState('');
-  const [category, setCategory] = useState<PostCategory | null>(null);
-  const [location, setLocation] = useState<PostLocation>(DEFAULT_LOCATION);
-  const [taggedAircraftId, setTaggedAircraftId] = useState(myAircraft[0]?.id ?? '');
-  const [photoUrl, setPhotoUrl] = useState(myAircraft[0]?.heroPhotoUrl ?? STOCK_PHOTOS[0]);
+  const { postId } = useLocalSearchParams<{ postId?: string }>();
+  const { aircraft, posts, users, addPost, updatePost } = useAppData();
+  const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
+  const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
+  const editingPost = postId ? posts.find((p) => p.id === postId) : undefined;
+
+  const LOCATIONS = useMemo<PostLocation[]>(
+    () => Array.from(new Map(posts.map((p) => [p.location.airportCode, p.location])).values()),
+    [posts],
+  );
+  const DEFAULT_LOCATION = useMemo(
+    () => LOCATIONS.find((l) => l.airportCode === currentUser.homeAirport) ?? LOCATIONS[0],
+    [LOCATIONS, currentUser.homeAirport],
+  );
+
+  const [caption, setCaption] = useState(editingPost?.body ?? '');
+  const [category, setCategory] = useState<PostCategory | null>(editingPost?.category ?? null);
+  const [location, setLocation] = useState<PostLocation>(editingPost?.location ?? DEFAULT_LOCATION);
+  const [taggedAircraftId, setTaggedAircraftId] = useState(
+    editingPost?.aircraftId ?? myAircraft[0]?.id ?? '',
+  );
+  const [photoUrl, setPhotoUrl] = useState(
+    editingPost?.photoUrl ?? myAircraft[0]?.heroPhotoUrl ?? STOCK_PHOTOS[0],
+  );
   const [expanded, setExpanded] = useState<ExpandedField>(null);
   const [posted, setPosted] = useState(false);
 
   const taggedAircraft = aircraft.find((a) => a.id === taggedAircraftId);
-  const canPost = caption.trim().length > 0;
+  const canPost = caption.trim().length > 0 && category !== null;
 
   function toggle(field: ExpandedField) {
     setExpanded((prev) => (prev === field ? null : field));
+  }
+
+  function handleSubmit() {
+    if (!canPost || !category) return;
+
+    if (editingPost) {
+      updatePost(editingPost.id, {
+        category,
+        title: deriveTitle(caption),
+        body: caption.trim(),
+        location,
+        aircraftId: taggedAircraftId,
+        photoUrl,
+      });
+      router.back();
+      return;
+    }
+
+    const post: Post = {
+      id: `p-${Date.now()}`,
+      aircraftId: taggedAircraftId,
+      authorId: CURRENT_USER_ID,
+      category,
+      title: deriveTitle(caption),
+      body: caption.trim(),
+      location,
+      createdAt: new Date().toISOString(),
+      photoUrl,
+      likeCount: 0,
+      commentCount: 0,
+    };
+    addPost(post);
+    setPosted(true);
   }
 
   if (posted) {
@@ -75,9 +125,11 @@ export function NewPostScreen() {
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
             <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
-          <Text style={styles.headerTitle}>New Post</Text>
-          <Pressable onPress={() => canPost && setPosted(true)} hitSlop={8} style={styles.nextButton}>
-            <Text style={[styles.nextText, !canPost && styles.nextTextDisabled]}>Next</Text>
+          <Text style={styles.headerTitle}>{editingPost ? 'Edit Post' : 'New Post'}</Text>
+          <Pressable onPress={handleSubmit} hitSlop={8} style={styles.nextButton}>
+            <Text style={[styles.nextText, !canPost && styles.nextTextDisabled]}>
+              {editingPost ? 'Save' : 'Next'}
+            </Text>
           </Pressable>
         </View>
 

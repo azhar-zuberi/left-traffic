@@ -48,7 +48,10 @@ export type IconName =
   | 'log-out-outline'
   | 'time-outline'
   | 'construct-outline'
-  | 'pricetag-outline';
+  | 'pricetag-outline'
+  | 'ellipsis-horizontal'
+  | 'trash-outline'
+  | 'pencil-outline';
 
 type Props = {
   name: IconName;
@@ -281,6 +284,34 @@ export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
               <>
                 <Path d="M4 4 H11 L20 13 L13 20 L4 11 Z" {...line} />
                 <Circle cx="7.5" cy="7.5" r="1.3" {...line} />
+              </>
+            );
+          case 'ellipsis-horizontal':
+            return (
+              <>
+                <Circle cx="5" cy="12" r="1.6" {...dot} />
+                <Circle cx="12" cy="12" r="1.6" {...dot} />
+                <Circle cx="19" cy="12" r="1.6" {...dot} />
+              </>
+            );
+          case 'trash-outline':
+            return (
+              <>
+                <Line x1="4.5" y1="7" x2="19.5" y2="7" {...line} />
+                <Path d="M9.5 7 V4.8 a1 1 0 0 1 1 -1 h3 a1 1 0 0 1 1 1 V7" {...line} />
+                <Path d="M6.5 7 L7.4 19.5 a1 1 0 0 0 1 0.9 h7.2 a1 1 0 0 0 1 -0.9 L18.5 7" {...line} />
+                <Line x1="10.2" y1="10.5" x2="10.2" y2="17" {...line} />
+                <Line x1="13.8" y1="10.5" x2="13.8" y2="17" {...line} />
+              </>
+            );
+          case 'pencil-outline':
+            return (
+              <>
+                <Path
+                  d="M5 19 L5.8 15.4 L14.6 6.6 a1.3 1.3 0 0 1 1.8 0 l1 1 a1.3 1.3 0 0 1 0 1.8 L8.6 18.2 Z"
+                  {...line}
+                />
+                <Line x1="13.3" y1="7.9" x2="16.1" y2="10.7" {...line} />
               </>
             );
           case 'log-out-outline':

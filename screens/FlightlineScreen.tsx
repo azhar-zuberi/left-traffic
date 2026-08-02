@@ -6,15 +6,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FilterPills } from '@/components/FilterPills';
 import { PostCard } from '@/components/PostCard';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, spacing, typography } from '@/theme';
-import { aircraft, posts } from '@/utils/sampleData';
-import { CURRENT_USER_FOLLOWING_IDS, type Post } from '@/utils/types';
+import type { Post } from '@/utils/types';
 
-type FilterKey = 'all' | 'following' | 'nearby';
+type FilterKey = 'all' | 'nearby';
 
 const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'all', label: 'All' },
-  { key: 'following', label: 'Following' },
   { key: 'nearby', label: 'Nearby' },
 ];
 
@@ -22,23 +21,21 @@ const FILTERS: { key: FilterKey; label: string }[] = [
 // there's no real geo-distance data to work with in this prototype.
 const NEARBY_STATE = 'CA';
 
-const aircraftById = new Map(aircraft.map((a) => [a.id, a]));
-
 export function FlightlineScreen() {
+  const { aircraft, posts } = useAppData();
   const [filter, setFilter] = useState<FilterKey>('all');
+
+  const aircraftById = useMemo(() => new Map(aircraft.map((a) => [a.id, a])), [aircraft]);
 
   const feed = useMemo(() => {
     const sorted = [...posts].sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
-    if (filter === 'following') {
-      return sorted.filter((post) => CURRENT_USER_FOLLOWING_IDS.includes(post.authorId));
-    }
     if (filter === 'nearby') {
       return sorted.filter((post) => post.location.state === NEARBY_STATE);
     }
     return sorted;
-  }, [filter]);
+  }, [filter, posts]);
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
