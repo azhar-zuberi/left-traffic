@@ -54,7 +54,12 @@ export function ActionSheet({ visible, onClose, title, message, options }: Props
             </View>
 
             <Pressable
-              style={({ pressed }) => [styles.card, styles.cancelCard, pressed && styles.optionPressed]}
+              style={({ pressed }) => [
+                styles.card,
+                styles.cancelCard,
+                styles.option,
+                pressed && styles.optionPressed,
+              ]}
               onPress={onClose}
             >
               <Text style={styles.cancelText}>Cancel</Text>
