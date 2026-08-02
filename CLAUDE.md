@@ -16,6 +16,8 @@ Be opinionated about product/UX decisions — this role is product partner, not 
 
 ### Required docs/ reading
 
+- `docs/MVP_SCOPE.md` — what's actually in v1 vs. explicitly deferred. All 10 screens exist, but not
+  every action on them is real yet; check this before building or "finishing" a feature.
 - `docs/PRODUCT_VISION.md` — the aircraft (not the owner) is the permanent entity; ownership is one
   chapter in its story. This drives real modeling decisions (see Data layer below).
 - `docs/DESIGN_SYSTEM.md` — palette (warm white, deep navy, aluminum gray, soft sky blue), large
@@ -25,7 +27,8 @@ Be opinionated about product/UX decisions — this role is product partner, not 
   functionality, no marketplace, no messaging.
 - `docs/MOCK_DATA.md` — what the sample data should cover (entities, aircraft manufacturers, post
   categories).
-- `docs/ARCHITECTURE.md` — flat structure, no business logic / API layer / services / repositories.
+- `docs/ARCHITECTURE.md` — flat structure, no business logic / API layer / services / repositories,
+  plus the `hooks/useAppData.tsx` shared-state pattern (see Data layer below).
 - `docs/left-traffic-lnf.png` — look-and-feel reference mockup. Screens don't need to match
   it 1:1, but it's the visual and structural source of truth (nav pattern, card styles, typography).
 
@@ -74,6 +77,13 @@ by hand. `utils/types.ts` defines the shapes and exports `CURRENT_USER_ID` (`'u1
 the fixed demo/logged-in user for this no-auth prototype. `utils/sampleData.ts` re-exports the JSON
 cast to those types — **import from `utils/sampleData`, not the raw JSON files**, so screens get
 typed data.
+
+Screens and components should read and mutate this data through `hooks/useAppData.tsx`
+(`AppDataProvider` / `useAppData()`, see `docs/ARCHITECTURE.md`), not by importing the arrays from
+`utils/sampleData` directly — those arrays don't trigger re-renders when mutated, which is why likes
+and comments used to desync across screens. `utils/sampleData` still seeds the provider and is the
+right import for anything that genuinely wants static seed data outside a component (e.g.
+`utils/stockPhotos.ts`), not for screens displaying live, interactive state.
 
 Two modeling decisions that aren't obvious from the schema alone:
 - **No separate logbook entity.** The Logbook screen in the look-and-feel reference is just that
