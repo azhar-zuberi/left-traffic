@@ -8,8 +8,8 @@ import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 
 const HERO_PHOTO = require('@/assets/images/splash2.jpg');
-const LOGO = require('@/assets/images/brand/lt-logo.png');
-const LOGO_ASPECT_RATIO = 874 / 448;
+const LOGO = require('@/assets/images/brand/left-traffic-logo.png');
+const LOGO_ASPECT_RATIO = 864 / 370;
 
 function enterApp() {
   router.replace('/(tabs)');
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   brandBlock: {
     alignItems: 'center',
-    marginTop: '15%',
+    marginTop: '6%',
   },
   brandLogo: {
     width: 280,
