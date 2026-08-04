@@ -129,3 +129,83 @@ any confirm dialog or option menu; don't reach for `Alert` or `ActionSheetIOS`.
 It builds a static curated photo list at module load time from the seed
 data — it isn't meant to reflect live mutations, and a hook can't be called
 outside a component anyway.
+
+---
+
+## Media: photo and video posts
+
+**Status: built.** `Post` no longer has a single `photoUrl` — it has
+`mediaType: 'photo' | 'video'`, `mediaUrl` (the picked/captured file), and an
+optional `thumbnailUrl` (extracted poster frame, video only; grid/list views
+render this instead of decoding video just to show a static image).
+
+Compose (`screens/NewPostScreen.tsx`) uses the device's real camera and
+media library via `utils/mediaPicker.ts` (`expo-image-picker`), offered
+through an `ActionSheet`: Take Photo, Record Video, Choose Photo/Video from
+Library. Camera options are hidden on web (`isCameraAvailable`); library
+picking works everywhere. Video posts get a poster thumbnail via
+`expo-video-thumbnails` (`extractThumbnail` — native only; it has no web
+implementation, so video posts on web just skip the poster and fall back to
+a plain placeholder). Compose requires real media before you can post; there
+is no stock-photo fallback anymore.
+
+`components/PostMedia.tsx` is the shared renderer — pass it a `Post` and it
+shows a photo, or a video thumbnail with a play badge that opens
+`components/VideoPlayerModal.tsx` (full-screen playback via `expo-video`) on
+tap. It's used in `PostCard`, `LogbookEntry`, and the Profile post grid, so
+video posts render consistently everywhere a post appears. `PostMedia` treats
+anything other than an explicit `'video'` `mediaType` as a photo, rather than
+requiring an exact `'photo'` match — that's a deliberate fallback so
+stale/partial post data doesn't silently render as a video placeholder.
+
+This is a justified exception to "avoid unnecessary dependencies"
+(`docs/left-traffic-front-end-prototype.md`) — video playback and capture
+aren't things you can build from primitives, and `expo-image-picker` /
+`expo-video` / `expo-video-thumbnails` are the standard Expo-maintained
+libraries for it, not a third-party add-on.
+
+---
+
+## Aircraft tagging on posts (optional, any aircraft)
+
+**Status: not yet built.** Per `docs/MVP_SCOPE.md`'s v1 pivot, posting
+doesn't require owning or tagging an aircraft, and when you do tag one, it
+isn't limited to aircraft you own.
+
+This changes a modeling decision stated elsewhere in this repo: `Post.aircraftId`
+was the primary relationship (whose story a post belongs to), with
+`Post.authorId` secondary. That's inverted now — `authorId` (who posted it) is
+primary, `aircraftId` becomes an optional tag. Update the type to
+`aircraftId: string | null`. Aircraft Detail's Logbook tab still works
+unchanged (it's just "posts tagged to this aircraft, if any" — filtering
+doesn't care whether the field is required), but it's no longer *the* story
+of the post, just one filtered view of it.
+
+In `NewPostScreen`'s "Tag Aircraft" step: replace the `myAircraft`-only list
+with a skippable tail-number lookup against the full aircraft registry —
+reuse the same match logic `AddAircraftScreen.handleLookup` already has
+(`aircraft.find(a => a.registration.toUpperCase() === query)`), not a picker
+scoped to owned aircraft. Unmatched input just leaves the post untagged; this
+lookup never creates a new `Aircraft` record — that's still exclusively
+`AddAircraftScreen`'s job.
+
+---
+
+## Navigation: feed-first, aircraft under Profile
+
+**Status: not yet built.** Per `docs/MVP_SCOPE.md`'s v1 pivot, the tab bar
+becomes **Flightline, Activity, Profile** plus the center FAB — My Hangar is
+no longer a tab.
+
+`(tabs)/index` currently is `MyHangarScreen`; it needs to become
+`FlightlineScreen` instead, since Flightline is now the app's home surface.
+Whatever screen ends up at `index` owns `/` — see the existing warning in
+this doc's history about not reintroducing a separate redirect there.
+
+Aircraft management (the list of aircraft you own, plus entry points into Add
+Aircraft, Edit Aircraft, and Aircraft Detail) moves to a "Your Aircraft"
+section on `ProfileScreen`, replacing My Hangar's role as the entry point.
+`AircraftDetailScreen`, `AddAircraftScreen`, and `EditAircraftScreen`
+themselves don't need content changes — only what links into them moves.
+`screens/MyHangarScreen.tsx` and its `app/(tabs)/index.tsx` re-export can be
+deleted once Profile's aircraft section covers what it did.
