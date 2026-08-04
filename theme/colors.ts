@@ -4,9 +4,9 @@
 // `userInterfaceStyle: "light"`.
 
 export const palette = {
-  navy900: '#0B1220',
-  navy800: '#10192B',
-  navy700: '#182338',
+  navy900: '#00254A',
+  navy800: '#003366',
+  navy700: '#00458A',
 
   warmWhite: '#FAFAFA',
   cream: '#F3EEE6',
