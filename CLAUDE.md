@@ -31,6 +31,9 @@ Be opinionated about product/UX decisions — this role is product partner, not 
   plus the `hooks/useAppData.tsx` shared-state pattern (see Data layer below).
 - `docs/left-traffic-lnf.png` — look-and-feel reference mockup. Screens don't need to match
   it 1:1, but it's the visual and structural source of truth (nav pattern, card styles, typography).
+- `docs/GIT_WORKFLOW.md` — every change goes on a branch and through a PR into `develop`, no
+  direct commits to `develop` or `main`. Follow this for any work in this repo, not just
+  architectural changes.
 
 ## Commands
 
@@ -61,9 +64,13 @@ Route map (`app/_layout.tsx` root `Stack`):
   **not** a redirect from a root `index.tsx`. There is no auth to enforce (see docs), so nothing
   gates navigation — Login is just where the app starts. Do not reintroduce a root `app/index.tsx`
   redirect; it will collide with `(tabs)/index.tsx`, which legitimately owns `/`.
-- `(tabs)` — Hangar (`index`), Flightline, Activity, Profile, plus a `new-post-tab` route that is
-  never actually shown: its `tabPress` is intercepted in `(tabs)/_layout.tsx` to push `/new-post`
-  as a modal instead of switching tabs. This is how the center **+** FAB works.
+- `(tabs)` — **changing per `docs/MVP_SCOPE.md`'s v1 pivot.** Was Hangar (`index`), Flightline,
+  Activity, Profile; becomes Flightline (`index`), Activity, Profile — My Hangar stops being a tab,
+  and Flightline (the feed) takes over `index`/`/` as the app's home surface. Aircraft management
+  moves under Profile instead (see `docs/ARCHITECTURE.md`'s "Navigation" section). Still has a
+  `new-post-tab` route that is never actually shown: its `tabPress` is intercepted in
+  `(tabs)/_layout.tsx` to push `/new-post` as a modal instead of switching tabs. This is how the
+  center **+** FAB works.
 - `aircraft/[aircraftId]`, `comments/[postId]` — dynamic stack routes.
 - `add-aircraft`, `edit-aircraft`, `new-post` — presented as modals.
   `edit-aircraft` and `new-post` (when passed a `postId` param) both double
@@ -97,8 +104,15 @@ Two modeling decisions that aren't obvious from the schema alone:
   `actorAircraftId: null`). This reflects the product's aircraft-first identity model. Both fields
   are stored explicitly on each `ActivityItem` — don't try to derive "primary aircraft" in the UI.
 
-`Post.aircraftId` is the primary relationship (whose story this is); `Post.authorId` is who wrote
-it. They can diverge over time as ownership changes — that's intentional, not a bug.
+`Post.authorId` is the primary relationship (who posted it); `Post.aircraftId` is an optional tag
+(which aircraft, if any, the post is about) — **this flipped for the v1 pivot** (`docs/MVP_SCOPE.md`,
+`docs/ARCHITECTURE.md`'s "Aircraft tagging on posts" section). It used to be the other way around,
+with `aircraftId` primary and required. `aircraftId` is now `string | null`, not limited to aircraft
+the author owns, and resolved via the same tail-number lookup `AddAircraftScreen` uses.
+
+Posts no longer carry a single `photoUrl` — see `docs/ARCHITECTURE.md`'s "Media: photo and video
+posts" section for the `mediaType`/`mediaUrl`/`thumbnailUrl` shape and the real camera/library
+capture flow already built on top of it.
 
 ### Dialogs and menus: `components/ActionSheet.tsx`
 
