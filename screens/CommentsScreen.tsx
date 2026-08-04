@@ -16,27 +16,27 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { CommentRow } from '@/components/CommentRow';
 import { Icon } from '@/components/Icon';
 import { PostCard } from '@/components/PostCard';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, spacing, typography } from '@/theme';
-import { aircraft, comments, posts, users } from '@/utils/sampleData';
 import { CURRENT_USER_ID, type Comment } from '@/utils/types';
-
-const usersById = new Map(users.map((u) => [u.id, u]));
-const aircraftById = new Map(aircraft.map((a) => [a.id, a]));
-const currentUser = usersById.get(CURRENT_USER_ID)!;
 
 export function CommentsScreen() {
   const { postId } = useLocalSearchParams<{ postId: string }>();
-  const [draftComments, setDraftComments] = useState<Comment[]>([]);
+  const { aircraft, comments, posts, users, addComment } = useAppData();
   const [commentText, setCommentText] = useState('');
+
+  const usersById = useMemo(() => new Map(users.map((u) => [u.id, u])), [users]);
+  const aircraftById = useMemo(() => new Map(aircraft.map((a) => [a.id, a])), [aircraft]);
+  const currentUser = usersById.get(CURRENT_USER_ID)!;
 
   const post = posts.find((p) => p.id === postId);
   const postAircraft = post ? aircraftById.get(post.aircraftId) : undefined;
 
   const thread = useMemo(() => {
-    return [...comments.filter((c) => c.postId === postId), ...draftComments].sort(
+    return [...comments.filter((c) => c.postId === postId)].sort(
       (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
     );
-  }, [postId, draftComments]);
+  }, [postId, comments]);
 
   if (!post || !postAircraft) {
     return (
@@ -49,17 +49,7 @@ export function CommentsScreen() {
   function handleSend() {
     const body = commentText.trim();
     if (!body || !post) return;
-    setDraftComments((prev) => [
-      ...prev,
-      {
-        id: `local-${Date.now()}`,
-        postId: post.id,
-        authorId: CURRENT_USER_ID,
-        body,
-        createdAt: new Date().toISOString(),
-        likeCount: 0,
-      },
-    ]);
+    addComment(post.id, body);
     setCommentText('');
   }
 
@@ -84,7 +74,12 @@ export function CommentsScreen() {
           contentContainerStyle={styles.listContent}
           ListHeaderComponent={
             <View style={styles.postWrap}>
-              <PostCard post={post} aircraft={postAircraft} onPress={() => {}} />
+              <PostCard
+                post={post}
+                aircraft={postAircraft}
+                onPress={() => {}}
+                onDeleted={() => router.back()}
+              />
               <Text style={styles.threadLabel}>
                 {thread.length === 0 ? 'No comments yet' : `${thread.length} Comments`}
               </Text>

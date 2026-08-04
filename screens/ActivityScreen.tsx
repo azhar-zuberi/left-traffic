@@ -4,17 +4,15 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ActivityRow } from '@/components/ActivityRow';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, spacing, typography } from '@/theme';
-import { activity, aircraft, users } from '@/utils/sampleData';
-import type { ActivityItem } from '@/utils/types';
-
-const usersById = new Map(users.map((u) => [u.id, u]));
-const aircraftById = new Map(aircraft.map((a) => [a.id, a]));
+import { activity } from '@/utils/sampleData';
+import type { ActivityItem, Aircraft, User } from '@/utils/types';
 
 // Aircraft-first identity model (docs/PRODUCT_VISION.md): show the actor's
 // tail number when they currently own an aircraft, falling back to their
 // handle when they don't.
-function actorAvatar(item: ActivityItem): string {
+function actorAvatar(item: ActivityItem, usersById: Map<string, User>, aircraftById: Map<string, Aircraft>): string {
   if (item.actorAircraftId) {
     const ownedAircraft = aircraftById.get(item.actorAircraftId);
     if (ownedAircraft) return ownedAircraft.heroPhotoUrl;
@@ -22,7 +20,7 @@ function actorAvatar(item: ActivityItem): string {
   return usersById.get(item.actorUserId)?.avatarUrl ?? '';
 }
 
-function actorName(item: ActivityItem): string {
+function actorName(item: ActivityItem, usersById: Map<string, User>, aircraftById: Map<string, Aircraft>): string {
   if (item.actorAircraftId) {
     const ownedAircraft = aircraftById.get(item.actorAircraftId);
     if (ownedAircraft) return ownedAircraft.registration;
@@ -31,6 +29,10 @@ function actorName(item: ActivityItem): string {
 }
 
 export function ActivityScreen() {
+  const { aircraft, users } = useAppData();
+  const usersById = useMemo(() => new Map(users.map((u) => [u.id, u])), [users]);
+  const aircraftById = useMemo(() => new Map(aircraft.map((a) => [a.id, a])), [aircraft]);
+
   const unread = useMemo(
     () =>
       activity
@@ -51,8 +53,8 @@ export function ActivityScreen() {
       <ActivityRow
         key={item.id}
         type={item.type}
-        avatarUrl={actorAvatar(item)}
-        actorName={actorName(item)}
+        avatarUrl={actorAvatar(item, usersById, aircraftById)}
+        actorName={actorName(item, usersById, aircraftById)}
         createdAt={item.createdAt}
         onPress={item.targetPostId ? () => router.push(`/comments/${item.targetPostId}`) : undefined}
       />

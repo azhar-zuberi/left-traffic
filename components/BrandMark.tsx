@@ -1,7 +1,7 @@
 import Svg, { Path } from 'react-native-svg';
 
 // The Left Traffic brand mark — a traced silhouette of the aircraft used across the app icon,
-// favicon, and website lockup (see assets/images/brand/left-traffic-logo.svg for the full
+// favicon, and website lockup (see assets/images/brand/left-traffic-logo.png for the full
 // wordmark version). Kept as a standalone component, separate from the generic aviation-inspired
 // line-icon set in `Icon.tsx`, since this is the literal brand mark rather than a UI glyph.
 const BRAND_PLANE_D =
@@ -15,7 +15,7 @@ type Props = {
 
 // Native aspect ratio of the traced mark is 231x113 (~2.04:1) — `size` sets the width, height
 // follows the aspect ratio automatically so callers don't have to compute it.
-export function BrandMark({ size = 44, color = '#10192B', style }: Props) {
+export function BrandMark({ size = 44, color = '#003366', style }: Props) {
   const height = size * (113 / 231);
   return (
     <Svg width={size} height={height} viewBox="0 0 231 113" style={style}>

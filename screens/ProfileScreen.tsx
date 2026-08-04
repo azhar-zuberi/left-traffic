@@ -4,22 +4,24 @@ import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-nati
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Icon } from '@/components/Icon';
+import { PostMedia } from '@/components/PostMedia';
 import { StatBlock } from '@/components/StatBlock';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
 import { formatNumber } from '@/utils/format';
-import { aircraft, posts, users } from '@/utils/sampleData';
 import { CURRENT_USER_ID } from '@/utils/types';
 
-const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
-const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
-
 export function ProfileScreen() {
+  const { aircraft, posts, users } = useAppData();
+  const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
+  const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
+
   const myPosts = useMemo(
     () =>
       posts
         .filter((p) => p.authorId === CURRENT_USER_ID)
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()),
-    [],
+    [posts],
   );
 
   const memberSinceYear = new Date(currentUser.joinedAt).getFullYear();
@@ -106,7 +108,7 @@ export function ProfileScreen() {
                   style={({ pressed }) => [styles.postTile, pressed && styles.postTilePressed]}
                   onPress={() => router.push(`/comments/${post.id}`)}
                 >
-                  <Image source={{ uri: post.photoUrl }} style={styles.postPhoto} resizeMode="cover" />
+                  <PostMedia post={post} style={styles.postPhoto} interactive={false} playBadgeSize={24} />
                 </Pressable>
               ))}
             </View>

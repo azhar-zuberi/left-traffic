@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { ActionSheet } from '@/components/ActionSheet';
 import { Icon } from '@/components/Icon';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, spacing, typography } from '@/theme';
 import { formatNumber, formatRelativeTime } from '@/utils/format';
-import type { Comment, User } from '@/utils/types';
+import { CURRENT_USER_ID, type Comment, type User } from '@/utils/types';
 
 type Props = {
   comment: Comment;
@@ -12,7 +14,10 @@ type Props = {
 };
 
 export function CommentRow({ comment, author }: Props) {
-  const [liked, setLiked] = useState(false);
+  const { isCommentLiked, toggleCommentLike, deleteComment } = useAppData();
+  const liked = isCommentLiked(comment.id);
+  const isOwner = comment.authorId === CURRENT_USER_ID;
+  const [confirmVisible, setConfirmVisible] = useState(false);
 
   return (
     <View style={styles.row}>
@@ -21,9 +26,17 @@ export function CommentRow({ comment, author }: Props) {
         <View style={styles.headerLine}>
           <Text style={styles.name}>{author.name}</Text>
           <Text style={styles.time}>{formatRelativeTime(comment.createdAt)}</Text>
+          {isOwner && (
+            <>
+              <View style={styles.headerSpacer} />
+              <Pressable onPress={() => setConfirmVisible(true)} hitSlop={8}>
+                <Icon name="trash-outline" size={14} color={colors.textMuted} />
+              </Pressable>
+            </>
+          )}
         </View>
         <Text style={styles.text}>{comment.body}</Text>
-        <Pressable style={styles.likeButton} onPress={() => setLiked((v) => !v)} hitSlop={8}>
+        <Pressable style={styles.likeButton} onPress={() => toggleCommentLike(comment.id)} hitSlop={8}>
           <Icon
             name={liked ? 'heart' : 'heart-outline'}
             size={14}
@@ -32,6 +45,14 @@ export function CommentRow({ comment, author }: Props) {
           <Text style={styles.likeCount}>{formatNumber(comment.likeCount + (liked ? 1 : 0))}</Text>
         </Pressable>
       </View>
+
+      <ActionSheet
+        visible={confirmVisible}
+        onClose={() => setConfirmVisible(false)}
+        title="Delete comment?"
+        message="This can't be undone."
+        options={[{ label: 'Delete', destructive: true, onPress: () => deleteComment(comment.id) }]}
+      />
     </View>
   );
 }
@@ -58,6 +79,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     gap: spacing.xs,
+  },
+  headerSpacer: {
+    flex: 1,
   },
   name: {
     ...typography.body,

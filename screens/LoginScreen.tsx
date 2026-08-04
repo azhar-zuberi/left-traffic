@@ -4,11 +4,12 @@ import { router } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { BrandMark } from '@/components/BrandMark';
 import { Icon } from '@/components/Icon';
 import { colors, radii, spacing, typography } from '@/theme';
 
 const HERO_PHOTO = require('@/assets/images/splash2.jpg');
+const LOGO = require('@/assets/images/brand/left-traffic-logo.png');
+const LOGO_ASPECT_RATIO = 864 / 370;
 
 function enterApp() {
   router.replace('/(tabs)');
@@ -30,10 +31,7 @@ export function LoginScreen() {
 
       <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
         <View style={styles.brandBlock}>
-          <BrandMark size={65} color={colors.textPrimary} style={styles.brandIcon} />
-          <View style={styles.wordmarkBorder}>
-            <Text style={styles.wordmark}>Left Traffic</Text>
-          </View>
+          <Image source={LOGO} style={styles.brandLogo} resizeMode="contain" />
         </View>
 
         <View style={styles.actions}>
@@ -88,25 +86,11 @@ const styles = StyleSheet.create({
   },
   brandBlock: {
     alignItems: 'center',
-    marginTop: '15%',
+    marginTop: '6%',
   },
-  brandIcon: {
-    marginBottom: spacing.sm,
-  },
-  wordmarkBorder: {
-    borderWidth: 2,
-    borderColor: colors.textPrimary,
-    borderRadius: radii.md,
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
-  },
-  wordmark: {
-    ...typography.screenTitle,
-    fontSize: 30,
-    lineHeight: 34,
-    letterSpacing: 3,
-    color: colors.textPrimary,
-    textAlign: 'center',
+  brandLogo: {
+    width: 280,
+    height: 280 / LOGO_ASPECT_RATIO,
   },
   actions: {
     gap: spacing.md,

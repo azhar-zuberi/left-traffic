@@ -3,16 +3,17 @@ import { useMemo, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { ActionSheet } from '@/components/ActionSheet';
 import { Icon } from '@/components/Icon';
 import { LogbookEntry } from '@/components/LogbookEntry';
 import { SegmentedTabs } from '@/components/SegmentedTabs';
 import { SpecRow } from '@/components/SpecRow';
 import { StatBlock } from '@/components/StatBlock';
 import { StatusPill } from '@/components/StatusPill';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, spacing, typography } from '@/theme';
 import { formatNumber } from '@/utils/format';
-import { aircraft, posts } from '@/utils/sampleData';
-import type { Post } from '@/utils/types';
+import { CURRENT_USER_ID, type Post } from '@/utils/types';
 
 type TabKey = 'overview' | 'logbook' | 'details' | 'photos';
 
@@ -27,8 +28,11 @@ const HERO_HEIGHT = 340;
 
 export function AircraftDetailScreen() {
   const { aircraftId } = useLocalSearchParams<{ aircraftId: string }>();
+  const { aircraft, posts, updateAircraft } = useAppData();
   const insets = useSafeAreaInsets();
   const [tab, setTab] = useState<TabKey>('overview');
+  const [heroPickerOpen, setHeroPickerOpen] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const aircraftRecord = aircraft.find((a) => a.id === aircraftId);
 
@@ -37,7 +41,7 @@ export function AircraftDetailScreen() {
     return posts
       .filter((p) => p.aircraftId === aircraftRecord.id)
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-  }, [aircraftRecord]);
+  }, [aircraftRecord, posts]);
 
   const groupedLogbook = useMemo(() => {
     const byYear = new Map<number, Post[]>();
@@ -58,6 +62,8 @@ export function AircraftDetailScreen() {
 
   const ownershipRecord = aircraftRecord.ownershipHistory.find((r) => r.endDate === null);
   const ownedSinceYear = ownershipRecord ? new Date(ownershipRecord.startDate).getFullYear() : undefined;
+  const isOwner = aircraftRecord.currentOwnerId === CURRENT_USER_ID;
+  const heroPickerPhotos = Array.from(new Set([aircraftRecord.heroPhotoUrl, ...aircraftRecord.photos]));
 
   return (
     <View style={styles.container}>
@@ -71,13 +77,57 @@ export function AircraftDetailScreen() {
           >
             <Icon name="chevron-back" size={22} color={colors.textOnDark} />
           </Pressable>
+
+          {isOwner && (
+            <Pressable
+              onPress={() => setHeroPickerOpen((v) => !v)}
+              style={[styles.editIconButton, { top: insets.top + spacing.sm }]}
+              hitSlop={8}
+            >
+              <Icon name="pencil-outline" size={20} color={colors.textOnDark} />
+            </Pressable>
+          )}
         </View>
 
+        {heroPickerOpen && (
+          <View style={styles.heroPicker}>
+            <Text style={styles.sectionLabel}>Choose Cover Photo</Text>
+            <View style={styles.heroPickerGrid}>
+              {heroPickerPhotos.map((uri) => (
+                <Pressable
+                  key={uri}
+                  onPress={() => {
+                    updateAircraft(aircraftRecord.id, { heroPhotoUrl: uri });
+                    setHeroPickerOpen(false);
+                  }}
+                  style={styles.heroPickerTile}
+                >
+                  <Image source={{ uri }} style={styles.heroPickerImage} resizeMode="cover" />
+                  {uri === aircraftRecord.heroPhotoUrl && (
+                    <View style={styles.heroPickerCheck}>
+                      <Icon name="checkmark" size={14} color={colors.textOnDark} />
+                    </View>
+                  )}
+                </Pressable>
+              ))}
+            </View>
+          </View>
+        )}
+
         <View style={styles.content}>
-          <Text style={styles.registration}>{aircraftRecord.registration}</Text>
-          <Text style={styles.subtitle}>
-            {aircraftRecord.year} {aircraftRecord.manufacturer} {aircraftRecord.model}
-          </Text>
+          <View style={styles.titleRow}>
+            <View style={styles.titleTextGroup}>
+              <Text style={styles.registration}>{aircraftRecord.registration}</Text>
+              <Text style={styles.subtitle}>
+                {aircraftRecord.year} {aircraftRecord.manufacturer} {aircraftRecord.model}
+              </Text>
+            </View>
+            {isOwner && (
+              <Pressable onPress={() => setMenuVisible(true)} hitSlop={8} style={styles.moreButton}>
+                <Icon name="ellipsis-horizontal" size={20} color={colors.textMuted} />
+              </Pressable>
+            )}
+          </View>
 
           <View style={styles.ownershipRow}>
             <StatusPill status={aircraftRecord.status} />
@@ -171,6 +221,18 @@ export function AircraftDetailScreen() {
           )}
         </View>
       </ScrollView>
+
+      <ActionSheet
+        visible={menuVisible}
+        onClose={() => setMenuVisible(false)}
+        options={[
+          {
+            label: 'Edit Aircraft Details',
+            onPress: () =>
+              router.push({ pathname: '/edit-aircraft', params: { aircraftId: aircraftRecord.id } }),
+          },
+        ]}
+      />
     </View>
   );
 }
@@ -208,9 +270,63 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  editIconButton: {
+    position: 'absolute',
+    right: spacing.md,
+    width: 40,
+    height: 40,
+    borderRadius: radii.pill,
+    backgroundColor: 'rgba(11,18,32,0.45)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  heroPicker: {
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.lg,
+  },
+  heroPickerGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+    marginTop: spacing.md,
+  },
+  heroPickerTile: {
+    width: '31.5%',
+    aspectRatio: 1,
+  },
+  heroPickerImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: radii.sm,
+    backgroundColor: colors.border,
+  },
+  heroPickerCheck: {
+    position: 'absolute',
+    top: spacing.xs,
+    right: spacing.xs,
+    width: 20,
+    height: 20,
+    borderRadius: radii.pill,
+    backgroundColor: colors.backgroundDark,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   content: {
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.lg,
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+  },
+  titleTextGroup: {
+    flex: 1,
+  },
+  moreButton: {
+    padding: spacing.xs,
+    marginTop: spacing.xs / 2,
   },
   registration: {
     ...typography.heading,

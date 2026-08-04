@@ -15,13 +15,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FormField } from '@/components/FormField';
 import { Icon } from '@/components/Icon';
 import { SettingsRow } from '@/components/SettingsRow';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, shadows, spacing, typography } from '@/theme';
-import { users } from '@/utils/sampleData';
 import { CURRENT_USER_ID } from '@/utils/types';
 
-const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
-
 export function SettingsScreen() {
+  const { users, updateUser } = useAppData();
+  const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
+
   const [name, setName] = useState(currentUser.name);
   const [handle, setHandle] = useState(currentUser.handle);
   const [homeAirport, setHomeAirport] = useState(currentUser.homeAirport);
@@ -31,6 +32,19 @@ export function SettingsScreen() {
   const [emailUpdates, setEmailUpdates] = useState(false);
   const [metricUnits, setMetricUnits] = useState(false);
 
+  const canSave = name.trim().length > 0 && handle.trim().length > 0;
+
+  function handleSave() {
+    if (!canSave) return;
+    updateUser(CURRENT_USER_ID, {
+      name: name.trim(),
+      handle: handle.trim(),
+      homeAirport: homeAirport.trim(),
+      bio: bio.trim(),
+    });
+    router.back();
+  }
+
   return (
     <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
@@ -39,7 +53,9 @@ export function SettingsScreen() {
             <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
           <Text style={styles.headerTitle}>Settings</Text>
-          <View style={styles.headerSpacer} />
+          <Pressable onPress={handleSave} hitSlop={8} style={styles.saveButton}>
+            <Text style={[styles.saveText, !canSave && styles.saveTextDisabled]}>Save</Text>
+          </Pressable>
         </View>
 
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
@@ -140,8 +156,17 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
   },
-  headerSpacer: {
-    width: 32,
+  saveButton: {
+    minWidth: 32,
+    alignItems: 'flex-end',
+  },
+  saveText: {
+    ...typography.body,
+    fontWeight: '700',
+    color: colors.accent,
+  },
+  saveTextDisabled: {
+    color: colors.textMuted,
   },
   scrollContent: {
     paddingHorizontal: spacing.lg,

@@ -1,5 +1,5 @@
-import { router } from 'expo-router';
-import { useState, type ReactNode } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useMemo, useState, type ReactNode } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -13,38 +13,134 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { ActionSheet, type ActionSheetOption } from '@/components/ActionSheet';
 import { Icon, type IconName } from '@/components/Icon';
+import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, spacing, typography } from '@/theme';
+import { captureFromCamera, isCameraAvailable, pickFromLibrary, type PickedMedia } from '@/utils/mediaPicker';
 import { CATEGORY_LABELS, POST_CATEGORIES } from '@/utils/postCategories';
-import { aircraft, posts, users } from '@/utils/sampleData';
-import { STOCK_PHOTOS } from '@/utils/stockPhotos';
-import { CURRENT_USER_ID, type PostCategory, type PostLocation } from '@/utils/types';
+import {
+  CURRENT_USER_ID,
+  type Post,
+  type PostCategory,
+  type PostLocation,
+  type PostMediaType,
+} from '@/utils/types';
 
-const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
-const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
+type ExpandedField = 'category' | 'location' | 'aircraft' | null;
+type MediaSheetMode = 'full' | 'camera' | null;
 
-const LOCATIONS: PostLocation[] = Array.from(
-  new Map(posts.map((p) => [p.location.airportCode, p.location])).values(),
-);
-const DEFAULT_LOCATION =
-  LOCATIONS.find((l) => l.airportCode === currentUser.homeAirport) ?? LOCATIONS[0];
-
-type ExpandedField = 'photo' | 'category' | 'location' | 'aircraft' | null;
+// Derives a short headline from the caption's first line since the compose
+// flow only collects one free-text field, not a separate title.
+function deriveTitle(caption: string): string {
+  const firstLine = caption.trim().split('\n')[0];
+  return firstLine.length > 60 ? `${firstLine.slice(0, 57)}…` : firstLine;
+}
 
 export function NewPostScreen() {
-  const [caption, setCaption] = useState('');
-  const [category, setCategory] = useState<PostCategory | null>(null);
-  const [location, setLocation] = useState<PostLocation>(DEFAULT_LOCATION);
-  const [taggedAircraftId, setTaggedAircraftId] = useState(myAircraft[0]?.id ?? '');
-  const [photoUrl, setPhotoUrl] = useState(myAircraft[0]?.heroPhotoUrl ?? STOCK_PHOTOS[0]);
+  const { postId } = useLocalSearchParams<{ postId?: string }>();
+  const { aircraft, posts, users, addPost, updatePost } = useAppData();
+  const currentUser = users.find((u) => u.id === CURRENT_USER_ID)!;
+  const myAircraft = aircraft.filter((a) => a.currentOwnerId === CURRENT_USER_ID);
+  const editingPost = postId ? posts.find((p) => p.id === postId) : undefined;
+
+  const LOCATIONS = useMemo<PostLocation[]>(
+    () => Array.from(new Map(posts.map((p) => [p.location.airportCode, p.location])).values()),
+    [posts],
+  );
+  const DEFAULT_LOCATION = useMemo(
+    () => LOCATIONS.find((l) => l.airportCode === currentUser.homeAirport) ?? LOCATIONS[0],
+    [LOCATIONS, currentUser.homeAirport],
+  );
+
+  const [caption, setCaption] = useState(editingPost?.body ?? '');
+  const [category, setCategory] = useState<PostCategory | null>(editingPost?.category ?? null);
+  const [location, setLocation] = useState<PostLocation>(editingPost?.location ?? DEFAULT_LOCATION);
+  const [taggedAircraftId, setTaggedAircraftId] = useState(
+    editingPost?.aircraftId ?? myAircraft[0]?.id ?? '',
+  );
+  const [mediaType, setMediaType] = useState<PostMediaType>(editingPost?.mediaType ?? 'photo');
+  const [mediaUrl, setMediaUrl] = useState(editingPost?.mediaUrl ?? '');
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | undefined>(editingPost?.thumbnailUrl);
+  const [mediaSheetMode, setMediaSheetMode] = useState<MediaSheetMode>(null);
   const [expanded, setExpanded] = useState<ExpandedField>(null);
   const [posted, setPosted] = useState(false);
 
   const taggedAircraft = aircraft.find((a) => a.id === taggedAircraftId);
-  const canPost = caption.trim().length > 0;
+  const canPost = caption.trim().length > 0 && category !== null && mediaUrl.length > 0;
 
   function toggle(field: ExpandedField) {
     setExpanded((prev) => (prev === field ? null : field));
+  }
+
+  function applyPickedMedia(picked: PickedMedia | null) {
+    if (!picked) return;
+    setMediaType(picked.mediaType);
+    setMediaUrl(picked.mediaUrl);
+    setThumbnailUrl(picked.thumbnailUrl);
+  }
+
+  async function handleChoosePhoto() {
+    applyPickedMedia(await pickFromLibrary('images'));
+  }
+
+  async function handleChooseVideo() {
+    applyPickedMedia(await pickFromLibrary('videos'));
+  }
+
+  async function handleTakePhoto() {
+    applyPickedMedia(await captureFromCamera('images'));
+  }
+
+  async function handleRecordVideo() {
+    applyPickedMedia(await captureFromCamera('videos'));
+  }
+
+  const cameraOptions: ActionSheetOption[] = [
+    { label: 'Take Photo', onPress: handleTakePhoto },
+    { label: 'Record Video', onPress: handleRecordVideo },
+  ];
+  const mediaSheetOptions: ActionSheetOption[] = [
+    ...(isCameraAvailable ? cameraOptions : []),
+    { label: 'Choose Photo from Library', onPress: handleChoosePhoto },
+    { label: 'Choose Video from Library', onPress: handleChooseVideo },
+  ];
+
+  function handleSubmit() {
+    if (!canPost || !category) return;
+
+    if (editingPost) {
+      updatePost(editingPost.id, {
+        category,
+        title: deriveTitle(caption),
+        body: caption.trim(),
+        location,
+        aircraftId: taggedAircraftId,
+        mediaType,
+        mediaUrl,
+        thumbnailUrl,
+      });
+      router.back();
+      return;
+    }
+
+    const post: Post = {
+      id: `p-${Date.now()}`,
+      aircraftId: taggedAircraftId,
+      authorId: CURRENT_USER_ID,
+      category,
+      title: deriveTitle(caption),
+      body: caption.trim(),
+      location,
+      createdAt: new Date().toISOString(),
+      mediaType,
+      mediaUrl,
+      thumbnailUrl,
+      likeCount: 0,
+      commentCount: 0,
+    };
+    addPost(post);
+    setPosted(true);
   }
 
   if (posted) {
@@ -54,7 +150,16 @@ export function NewPostScreen() {
           <View style={styles.successIcon}>
             <Icon name="checkmark" size={32} color={colors.textOnDark} />
           </View>
-          <Image source={{ uri: photoUrl }} style={styles.completePhoto} />
+          {mediaType === 'video' ? (
+            <View style={[styles.completePhoto, styles.completeVideo]}>
+              {thumbnailUrl && (
+                <Image source={{ uri: thumbnailUrl }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+              )}
+              <Icon name="play-circle-outline" size={36} color={colors.textOnDark} />
+            </View>
+          ) : (
+            <Image source={{ uri: mediaUrl }} style={styles.completePhoto} />
+          )}
           <Text style={styles.completeTitle}>Added to the Flightline</Text>
           <Text style={styles.completeSubtitle}>
             {taggedAircraft?.registration}
@@ -75,45 +180,43 @@ export function NewPostScreen() {
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
             <Icon name="chevron-back" size={22} color={colors.textPrimary} />
           </Pressable>
-          <Text style={styles.headerTitle}>New Post</Text>
-          <Pressable onPress={() => canPost && setPosted(true)} hitSlop={8} style={styles.nextButton}>
-            <Text style={[styles.nextText, !canPost && styles.nextTextDisabled]}>Next</Text>
+          <Text style={styles.headerTitle}>{editingPost ? 'Edit Post' : 'New Post'}</Text>
+          <Pressable onPress={handleSubmit} hitSlop={8} style={styles.nextButton}>
+            <Text style={[styles.nextText, !canPost && styles.nextTextDisabled]}>
+              {editingPost ? 'Save' : 'Next'}
+            </Text>
           </Pressable>
         </View>
 
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           <View style={styles.heroWrap}>
-            <Image source={{ uri: photoUrl }} style={styles.hero} resizeMode="cover" />
-            <Pressable
-              onPress={() => toggle('photo')}
-              style={({ pressed }) => [styles.editPill, pressed && styles.editPillPressed]}
-            >
-              <Icon name="image-outline" size={14} color={colors.textOnDark} />
-              <Text style={styles.editPillText}>Edit</Text>
-            </Pressable>
-          </View>
-
-          {expanded === 'photo' && (
-            <View style={styles.photoGrid}>
-              {STOCK_PHOTOS.map((url) => (
+            {mediaUrl ? (
+              <>
+                {mediaType === 'video' ? (
+                  <View style={styles.heroVideo}>
+                    {thumbnailUrl && (
+                      <Image source={{ uri: thumbnailUrl }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+                    )}
+                    <Icon name="play-circle-outline" size={48} color={colors.textOnDark} />
+                  </View>
+                ) : (
+                  <Image source={{ uri: mediaUrl }} style={styles.hero} resizeMode="cover" />
+                )}
                 <Pressable
-                  key={url}
-                  onPress={() => {
-                    setPhotoUrl(url);
-                    setExpanded(null);
-                  }}
-                  style={styles.photoTile}
+                  onPress={() => setMediaSheetMode('full')}
+                  style={({ pressed }) => [styles.editPill, pressed && styles.editPillPressed]}
                 >
-                  <Image source={{ uri: url }} style={styles.photoImage} />
-                  {url === photoUrl && (
-                    <View style={styles.photoCheck}>
-                      <Icon name="checkmark" size={14} color={colors.textOnDark} />
-                    </View>
-                  )}
+                  <Icon name="image-outline" size={14} color={colors.textOnDark} />
+                  <Text style={styles.editPillText}>Edit</Text>
                 </Pressable>
-              ))}
-            </View>
-          )}
+              </>
+            ) : (
+              <Pressable style={styles.heroEmpty} onPress={() => setMediaSheetMode('full')}>
+                <Icon name="camera-outline" size={26} color={colors.textMuted} />
+                <Text style={styles.heroEmptyText}>Add a photo or video</Text>
+              </Pressable>
+            )}
+          </View>
 
           <TextInput
             value={caption}
@@ -214,18 +317,27 @@ export function NewPostScreen() {
           <View style={styles.divider} />
 
           <View style={styles.mediaRow}>
-            <Pressable onPress={() => toggle('photo')} hitSlop={8}>
+            <Pressable onPress={handleChoosePhoto} hitSlop={8}>
               <Icon name="image-outline" size={22} color={colors.textSecondary} />
             </Pressable>
-            <Pressable onPress={() => toggle('photo')} hitSlop={8}>
+            <Pressable onPress={handleChooseVideo} hitSlop={8}>
               <Icon name="play-circle-outline" size={22} color={colors.textSecondary} />
             </Pressable>
-            <Pressable onPress={() => toggle('photo')} hitSlop={8}>
-              <Icon name="camera-outline" size={22} color={colors.textSecondary} />
-            </Pressable>
+            {isCameraAvailable && (
+              <Pressable onPress={() => setMediaSheetMode('camera')} hitSlop={8}>
+                <Icon name="camera-outline" size={22} color={colors.textSecondary} />
+              </Pressable>
+            )}
           </View>
         </ScrollView>
       </SafeAreaView>
+
+      <ActionSheet
+        visible={mediaSheetMode !== null}
+        onClose={() => setMediaSheetMode(null)}
+        title="Add Media"
+        options={mediaSheetMode === 'camera' ? cameraOptions : mediaSheetOptions}
+      />
     </KeyboardAvoidingView>
   );
 }
@@ -275,6 +387,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: spacing.lg,
+    paddingTop: spacing.md,
     paddingBottom: spacing.md,
   },
   backButton: {
@@ -288,7 +401,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   nextButton: {
-    width: 32,
+    minWidth: 32,
     alignItems: 'flex-end',
   },
   nextText: {
@@ -313,6 +426,25 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  heroVideo: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: colors.backgroundDark,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  heroEmpty: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.xs,
+    backgroundColor: colors.surface,
+  },
+  heroEmptyText: {
+    ...typography.bodyMuted,
+    color: colors.textMuted,
+  },
   editPill: {
     position: 'absolute',
     right: spacing.sm,
@@ -332,33 +464,6 @@ const styles = StyleSheet.create({
     ...typography.caption,
     fontWeight: '600',
     color: colors.textOnDark,
-  },
-  photoGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: spacing.sm,
-    marginTop: spacing.md,
-  },
-  photoTile: {
-    width: '31.5%',
-    aspectRatio: 1,
-  },
-  photoImage: {
-    width: '100%',
-    height: '100%',
-    borderRadius: radii.sm,
-    backgroundColor: colors.border,
-  },
-  photoCheck: {
-    position: 'absolute',
-    top: spacing.xs,
-    right: spacing.xs,
-    width: 20,
-    height: 20,
-    borderRadius: radii.pill,
-    backgroundColor: colors.backgroundDark,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   caption: {
     ...typography.body,
@@ -472,6 +577,11 @@ const styles = StyleSheet.create({
     borderRadius: radii.card,
     backgroundColor: colors.border,
     marginBottom: spacing.sm,
+  },
+  completeVideo: {
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   completeTitle: {
     ...typography.heading,
