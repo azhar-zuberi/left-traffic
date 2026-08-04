@@ -17,7 +17,7 @@
     "android": {
       "package": "com.lefttraffic.app",
       "adaptiveIcon": {
-        "backgroundColor": "#10192B",
+        "backgroundColor": "#003366",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
@@ -36,7 +36,7 @@
         {
           "image": "./assets/images/splash-icon.png",
           "resizeMode": "contain",
-          "backgroundColor": "#10192B"
+          "backgroundColor": "#003366"
         }
       ],
       [

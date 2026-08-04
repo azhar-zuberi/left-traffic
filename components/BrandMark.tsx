@@ -15,7 +15,7 @@ type Props = {
 
 // Native aspect ratio of the traced mark is 231x113 (~2.04:1) — `size` sets the width, height
 // follows the aspect ratio automatically so callers don't have to compute it.
-export function BrandMark({ size = 44, color = '#10192B', style }: Props) {
+export function BrandMark({ size = 44, color = '#003366', style }: Props) {
   const height = size * (113 / 231);
   return (
     <Svg width={size} height={height} viewBox="0 0 231 113" style={style}>
