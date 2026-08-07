@@ -17,3 +17,9 @@ sample-data/
 # and agents rather than compiled. Prettier's markdown handling adds churn to
 # those files without making them clearer, so prose stays hand-maintained.
 *.md
+
+# Agent settings are deliberately not agent-writable, so a gate that demands a
+# change here is one the agent structurally cannot satisfy — it would fail the
+# pre-commit hook with no way to fix itself. Don't gate on files the thing being
+# gated can't edit.
+.claude/
