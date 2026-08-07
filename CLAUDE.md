@@ -38,18 +38,66 @@ Be opinionated about product/UX decisions — this role is product partner, not 
 ## Commands
 
 ```bash
-npm install          # install dependencies
+npm install          # install dependencies (also wires .githooks via the "prepare" script)
 npm start             # expo start — dev server, scan QR or press i/a/w
 npm run ios           # expo start --ios
 npm run android        # expo start --android
 npm run web            # expo start --web (fastest way to eyeball a change; no simulator needed)
-npx tsc --noEmit       # typecheck — no separate lint or test setup exists yet
 npx expo export -p ios # bundles the app without a simulator; good smoke test for import errors
 npx expo-doctor        # validates Expo project config/dependency health
 ```
 
-There is no test runner or linter configured. Typechecking + `expo export` is the current
-verification loop.
+## Verification — run this before saying you're done
+
+```bash
+npm run verify   # lint + format check + typecheck + sample-data integrity
+```
+
+**Run `npm run verify` and get a clean result before reporting a change as complete.** The same
+checks run in a git hook and again in CI, so skipping this only means finding out later. The
+individual pieces, if you need to isolate a failure:
+
+```bash
+npm run lint         # eslint, --max-warnings 0
+npm run lint:fix     # eslint --fix
+npm run format       # prettier --write
+npm run format:check # prettier --check
+npm run typecheck    # tsc --noEmit
+npm run check:data   # referential integrity of sample-data/*.json
+```
+
+There is still no unit test runner, and for a prototype of screens over static JSON that's a
+deliberate choice rather than a gap — `check:data` plus a real bundle covers more of what actually
+breaks here than a suite of component tests would. Revisit when the backend lands.
+
+### The gate stack
+
+Five layers, cheapest first. Each one exists because something upstream can't catch that class of
+problem:
+
+1. **As you write** — `tsc` strict (already on via `tsconfig.json`).
+2. **Pre-commit** (`.githooks/pre-commit`) — lint, format check, typecheck. Kept fast on purpose.
+3. **Pre-push** (`.githooks/pre-push`) — `check:data`.
+4. **CI on the PR** (`.github/workflows/pr.yml`) — re-runs all of the above on a clean checkout,
+   plus `expo export`. Local hooks are advisory (`--no-verify` skips them, and `core.hooksPath` is
+   unset on a fresh clone until `npm install` runs); this layer is the one that actually holds.
+5. **Review** (`.github/pull_request_template.md`) — acceptance criteria restated, evidence per
+   criterion, human approval.
+
+Layers 1–4 check that the code is *well-formed*. Only layer 5 checks that it does the *right
+thing* — so a green CI run is not evidence that a feature works.
+
+### Lint rules encode the "don'ts" below
+
+Several constraints in this file are also ESLint rules in `eslint.config.js` — `Alert.alert` /
+`ActionSheetIOS`, `useColorScheme`, importing raw `sample-data/*.json`, and reaching past
+`useAppData()` for live state. Prose here degrades as context fills up; a lint rule doesn't. **If
+you change one of those rules, update the matching section of this file too** — they're meant to
+say the same thing, and drift between them is worse than either alone.
+
+`scripts/check-sample-data.mjs` is the same idea for the data layer: it parses the enum unions and
+`CURRENT_USER_ID` straight out of `utils/types.ts` rather than duplicating them, so it can't drift
+from the types it's enforcing.
 
 ## Architecture
 

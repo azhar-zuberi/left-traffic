@@ -1,0 +1,19 @@
+node_modules/
+dist/
+dist-ci/
+dist-verify/
+.expo/
+ios/
+android/
+expo-env.d.ts
+package-lock.json
+
+# Hand-authored fixture data. Formatting it would produce a large, meaningless
+# diff and make referential-integrity review harder; scripts/check-sample-data.mjs
+# is what actually guards these files.
+sample-data/
+
+# CLAUDE.md and docs/ are the alignment layer — hand-wrapped, and read by humans
+# and agents rather than compiled. Prettier's markdown handling adds churn to
+# those files without making them clearer, so prose stays hand-maintained.
+*.md

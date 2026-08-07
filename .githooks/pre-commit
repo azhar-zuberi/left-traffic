@@ -1,0 +1,23 @@
+#!/bin/sh
+# Fast gate — must stay quick enough that nobody reaches for --no-verify.
+# Lint, formatting and typecheck only; the slower checks run on pre-push and CI.
+#
+# Wired up by `npm install` (the "prepare" script sets core.hooksPath), or
+# manually with:  git config core.hooksPath .githooks
+#
+# These hooks are advisory: `--no-verify` bypasses them and an unattended agent
+# will eventually find that flag. CI re-runs everything here on a clean
+# checkout, which is the gate that actually holds.
+
+set -e
+
+echo "pre-commit: lint"
+npm run --silent lint
+
+echo "pre-commit: format check"
+npm run --silent format:check
+
+echo "pre-commit: typecheck"
+npm run --silent typecheck
+
+echo "pre-commit: OK"

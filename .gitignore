@@ -6,6 +6,7 @@ node_modules/
 # Expo
 .expo/
 dist/
+dist-ci/
 web-build/
 expo-env.d.ts
 
@@ -32,6 +33,10 @@ yarn-error.*
 
 # local env files
 .env*.local
+
+# Per-developer Claude Code settings. Anything meant to be shared belongs in
+# .claude/settings.json (committed) instead.
+.claude/settings.local.json
 
 # typescript
 *.tsbuildinfo
