@@ -61,15 +61,23 @@ export function AircraftDetailScreen() {
   }
 
   const ownershipRecord = aircraftRecord.ownershipHistory.find((r) => r.endDate === null);
-  const ownedSinceYear = ownershipRecord ? new Date(ownershipRecord.startDate).getFullYear() : undefined;
+  const ownedSinceYear = ownershipRecord
+    ? new Date(ownershipRecord.startDate).getFullYear()
+    : undefined;
   const isOwner = aircraftRecord.currentOwnerId === CURRENT_USER_ID;
-  const heroPickerPhotos = Array.from(new Set([aircraftRecord.heroPhotoUrl, ...aircraftRecord.photos]));
+  const heroPickerPhotos = Array.from(
+    new Set([aircraftRecord.heroPhotoUrl, ...aircraftRecord.photos]),
+  );
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{ paddingBottom: insets.bottom + spacing.xxl }}>
         <View style={styles.heroWrap}>
-          <Image source={{ uri: aircraftRecord.heroPhotoUrl }} style={styles.hero} resizeMode="cover" />
+          <Image
+            source={{ uri: aircraftRecord.heroPhotoUrl }}
+            style={styles.hero}
+            resizeMode="cover"
+          />
           <Pressable
             onPress={() => router.back()}
             style={[styles.backButton, { top: insets.top + spacing.sm }]}
@@ -146,7 +154,11 @@ export function AircraftDetailScreen() {
               <Text style={styles.sectionLabel}>Highlights</Text>
               <View style={styles.highlightsRow}>
                 <View style={styles.highlightItem}>
-                  <StatBlock icon="location-outline" value={aircraftRecord.homeAirport} label="Home Airport" />
+                  <StatBlock
+                    icon="location-outline"
+                    value={aircraftRecord.homeAirport}
+                    label="Home Airport"
+                  />
                 </View>
                 <View style={styles.highlightItem}>
                   <StatBlock
@@ -156,7 +168,11 @@ export function AircraftDetailScreen() {
                   />
                 </View>
                 <View style={styles.highlightItem}>
-                  <StatBlock icon="construct-outline" value={aircraftRecord.engine} label="Engine" />
+                  <StatBlock
+                    icon="construct-outline"
+                    value={aircraftRecord.engine}
+                    label="Engine"
+                  />
                 </View>
               </View>
 
@@ -166,7 +182,11 @@ export function AircraftDetailScreen() {
                   <Text style={styles.viewAll}>View all</Text>
                 </Pressable>
               </View>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.photosScroll}>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.photosScroll}
+              >
                 {aircraftRecord.photos.slice(0, 4).map((uri) => (
                   <Pressable key={uri} onPress={() => setTab('photos')}>
                     <Image source={{ uri }} style={styles.recentPhoto} resizeMode="cover" />
@@ -204,7 +224,10 @@ export function AircraftDetailScreen() {
               <SpecRow label="Engine" value={aircraftRecord.engine} />
               <SpecRow label="Horsepower" value={`${aircraftRecord.horsepower} HP`} />
               <SpecRow label="Propeller" value={aircraftRecord.propeller} />
-              <SpecRow label="Useful Load" value={`${formatNumber(aircraftRecord.usefulLoad)} lbs`} />
+              <SpecRow
+                label="Useful Load"
+                value={`${formatNumber(aircraftRecord.usefulLoad)} lbs`}
+              />
               <SpecRow label="Cruise Speed" value={`${aircraftRecord.cruiseSpeed} KTAS`} />
               <SpecRow label="Range" value={`${formatNumber(aircraftRecord.range)} NM`} />
             </View>
@@ -229,7 +252,10 @@ export function AircraftDetailScreen() {
           {
             label: 'Edit Aircraft Details',
             onPress: () =>
-              router.push({ pathname: '/edit-aircraft', params: { aircraftId: aircraftRecord.id } }),
+              router.push({
+                pathname: '/edit-aircraft',
+                params: { aircraftId: aircraftRecord.id },
+              }),
           },
         ]}
       />

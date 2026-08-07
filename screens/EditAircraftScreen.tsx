@@ -1,6 +1,14 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FormField } from '@/components/FormField';
@@ -53,7 +61,10 @@ export function EditAircraftScreen() {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView
+      style={styles.flex}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
@@ -65,7 +76,10 @@ export function EditAircraftScreen() {
           </Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
           <View style={styles.formGroup}>
             <FormField label="Registration" value={record.registration} editable={false} />
             <FormField
@@ -95,7 +109,12 @@ export function EditAircraftScreen() {
               placeholder="28-7890123"
               autoCapitalize="characters"
             />
-            <FormField label="Engine" value={engine} onChangeText={setEngine} placeholder="Lycoming O-360" />
+            <FormField
+              label="Engine"
+              value={engine}
+              onChangeText={setEngine}
+              placeholder="Lycoming O-360"
+            />
             <FormField
               label="Horsepower"
               value={horsepower}

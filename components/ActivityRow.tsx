@@ -13,10 +13,7 @@ type Props = {
   onPress?: () => void;
 };
 
-const TYPE_META: Record<
-  ActivityType,
-  { icon: IconName; color: string; verb: string }
-> = {
+const TYPE_META: Record<ActivityType, { icon: IconName; color: string; verb: string }> = {
   like: { icon: 'heart', color: colors.like, verb: 'liked your post' },
   comment: { icon: 'chatbubble', color: colors.accent, verb: 'commented on your post' },
   follow: { icon: 'person-add', color: colors.tint, verb: 'started following you' },

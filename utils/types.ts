@@ -2,14 +2,7 @@
 // screens can consume the mocked JSON safely.
 
 export type PostCategory =
-  | 'upgrade'
-  | 'flight'
-  | 'inspection'
-  | 'milestone'
-  | 'overhaul'
-  | 'flyout'
-  | 'event'
-  | 'trip';
+  'upgrade' | 'flight' | 'inspection' | 'milestone' | 'overhaul' | 'flyout' | 'event' | 'trip';
 
 export type AircraftStatus = 'flying' | 'grounded' | 'maintenance';
 

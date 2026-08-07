@@ -38,7 +38,11 @@ export function FormField({
         autoCapitalize={autoCapitalize}
         multiline={multiline}
         secureTextEntry={secureTextEntry}
-        style={[styles.input, multiline && styles.inputMultiline, !editable && styles.inputDisabled]}
+        style={[
+          styles.input,
+          multiline && styles.inputMultiline,
+          !editable && styles.inputDisabled,
+        ]}
       />
     </View>
   );

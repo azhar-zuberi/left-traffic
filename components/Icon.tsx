@@ -65,7 +65,13 @@ const AIRPLANE_D =
 
 export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
   const strokeWidth = 1.75;
-  const line = { stroke: color, strokeWidth, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, fill: 'none' };
+  const line = {
+    stroke: color,
+    strokeWidth,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    fill: 'none',
+  };
   const dot = { fill: color };
 
   return (
@@ -137,7 +143,10 @@ export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
           case 'image-outline':
             return (
               <>
-                <Path d="M3.5 4.5 h17 a1 1 0 0 1 1 1 v13 a1 1 0 0 1 -1 1 h-17 a1 1 0 0 1 -1 -1 v-13 a1 1 0 0 1 1 -1 Z" {...line} />
+                <Path
+                  d="M3.5 4.5 h17 a1 1 0 0 1 1 1 v13 a1 1 0 0 1 -1 1 h-17 a1 1 0 0 1 -1 -1 v-13 a1 1 0 0 1 1 -1 Z"
+                  {...line}
+                />
                 <Circle cx="8.7" cy="9.5" r="1.6" {...line} />
                 <Path d="M4.5 17.5 L9.5 12.5 L13 16 L16.5 12.5 L19.7 15.7" {...line} />
               </>
@@ -145,8 +154,14 @@ export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
           case 'images-outline':
             return (
               <>
-                <Path d="M7 7 V5 a1 1 0 0 1 1 -1 h11 a1 1 0 0 1 1 1 v11 a1 1 0 0 1 -1 1 h-2" {...line} />
-                <Path d="M3.5 7 h13 a1 1 0 0 1 1 1 v11 a1 1 0 0 1 -1 1 h-13 a1 1 0 0 1 -1 -1 V8 a1 1 0 0 1 1 -1 Z" {...line} />
+                <Path
+                  d="M7 7 V5 a1 1 0 0 1 1 -1 h11 a1 1 0 0 1 1 1 v11 a1 1 0 0 1 -1 1 h-2"
+                  {...line}
+                />
+                <Path
+                  d="M3.5 7 h13 a1 1 0 0 1 1 1 v11 a1 1 0 0 1 -1 1 h-13 a1 1 0 0 1 -1 -1 V8 a1 1 0 0 1 1 -1 Z"
+                  {...line}
+                />
                 <Circle cx="8" cy="11.2" r="1.3" {...line} />
               </>
             );
@@ -168,7 +183,10 @@ export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
             return (
               <>
                 <Path d="M9 5 L10 3.5 L14 3.5 L15 5" {...line} />
-                <Path d="M3.5 5 h17 a1 1 0 0 1 1 1 v12.5 a1 1 0 0 1 -1 1 h-17 a1 1 0 0 1 -1 -1 v-12.5 a1 1 0 0 1 1 -1 Z" {...line} />
+                <Path
+                  d="M3.5 5 h17 a1 1 0 0 1 1 1 v12.5 a1 1 0 0 1 -1 1 h-17 a1 1 0 0 1 -1 -1 v-12.5 a1 1 0 0 1 1 -1 Z"
+                  {...line}
+                />
                 <Circle cx="12" cy="12.2" r="3.8" {...line} />
               </>
             );
@@ -191,17 +209,30 @@ export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
           case 'heart-outline': {
             const d =
               'M12 20s-7.5-4.6-10-9.3C0.5 7.5 2 4 5.5 4c2 0 3.5 1.2 4.5 2.8C11 5.2 12.5 4 14.5 4 18 4 19.5 7.5 18 10.7 15.5 15.4 12 20 12 20Z';
-            return name === 'heart' ? <Path d={d} fill={color} stroke="none" /> : <Path d={d} {...line} />;
+            return name === 'heart' ? (
+              <Path d={d} fill={color} stroke="none" />
+            ) : (
+              <Path d={d} {...line} />
+            );
           }
           case 'chatbubble':
           case 'chatbubble-outline': {
-            const d = 'M4 5 h16 a1 1 0 0 1 1 1 v10 a1 1 0 0 1 -1 1 H9 l-4.5 4 v-4 H4 a1 1 0 0 1 -1 -1 V6 a1 1 0 0 1 1 -1 Z';
-            return name === 'chatbubble' ? <Path d={d} fill={color} stroke="none" /> : <Path d={d} {...line} />;
+            const d =
+              'M4 5 h16 a1 1 0 0 1 1 1 v10 a1 1 0 0 1 -1 1 H9 l-4.5 4 v-4 H4 a1 1 0 0 1 -1 -1 V6 a1 1 0 0 1 1 -1 Z';
+            return name === 'chatbubble' ? (
+              <Path d={d} fill={color} stroke="none" />
+            ) : (
+              <Path d={d} {...line} />
+            );
           }
           case 'bookmark':
           case 'bookmark-outline': {
             const d = 'M6 3.5 h12 a1 1 0 0 1 1 1 V21 l-7-4.2 -7 4.2 V4.5 a1 1 0 0 1 1 -1 Z';
-            return name === 'bookmark' ? <Path d={d} fill={color} stroke="none" /> : <Path d={d} {...line} />;
+            return name === 'bookmark' ? (
+              <Path d={d} fill={color} stroke="none" />
+            ) : (
+              <Path d={d} {...line} />
+            );
           }
           case 'settings-outline':
             return (
@@ -235,15 +266,26 @@ export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
           case 'ribbon-outline':
             return (
               <>
-                <Path d="M11 12 C8 11 5 10.3 2.3 12.5 C5 12 8 13 11 13.3 Z" fill={color} stroke="none" />
-                <Path d="M13 12 C16 11 19 10.3 21.7 12.5 C19 12 16 13 13 13.3 Z" fill={color} stroke="none" />
+                <Path
+                  d="M11 12 C8 11 5 10.3 2.3 12.5 C5 12 8 13 11 13.3 Z"
+                  fill={color}
+                  stroke="none"
+                />
+                <Path
+                  d="M13 12 C16 11 19 10.3 21.7 12.5 C19 12 16 13 13 13.3 Z"
+                  fill={color}
+                  stroke="none"
+                />
                 <Circle cx="12" cy="12.3" r="1.5" {...line} />
               </>
             );
           case 'mail-outline':
             return (
               <>
-                <Path d="M3.5 5.5 h17 a1 1 0 0 1 1 1 v11 a1 1 0 0 1 -1 1 h-17 a1 1 0 0 1 -1 -1 v-11 a1 1 0 0 1 1 -1 Z" {...line} />
+                <Path
+                  d="M3.5 5.5 h17 a1 1 0 0 1 1 1 v11 a1 1 0 0 1 -1 1 h-17 a1 1 0 0 1 -1 -1 v-11 a1 1 0 0 1 1 -1 Z"
+                  {...line}
+                />
                 <Path d="M4 7 L12 13.5 L20 7" {...line} />
               </>
             );
@@ -299,7 +341,10 @@ export function Icon({ name, size = 24, color = '#1C1C1E', style }: Props) {
               <>
                 <Line x1="4.5" y1="7" x2="19.5" y2="7" {...line} />
                 <Path d="M9.5 7 V4.8 a1 1 0 0 1 1 -1 h3 a1 1 0 0 1 1 1 V7" {...line} />
-                <Path d="M6.5 7 L7.4 19.5 a1 1 0 0 0 1 0.9 h7.2 a1 1 0 0 0 1 -0.9 L18.5 7" {...line} />
+                <Path
+                  d="M6.5 7 L7.4 19.5 a1 1 0 0 0 1 0.9 h7.2 a1 1 0 0 0 1 -0.9 L18.5 7"
+                  {...line}
+                />
                 <Line x1="10.2" y1="10.5" x2="10.2" y2="17" {...line} />
                 <Line x1="13.8" y1="10.5" x2="13.8" y2="17" {...line} />
               </>

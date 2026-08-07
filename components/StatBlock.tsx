@@ -14,8 +14,16 @@ export function StatBlock({ icon, value, label, onDark = false }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.valueRow}>
-        <Icon name={icon} size={15} color={onDark ? colors.textOnDarkMuted : colors.textMuted} style={styles.icon} />
-        <Text style={[styles.value, onDark ? styles.valueOnDark : styles.valueOnLight]} numberOfLines={2}>
+        <Icon
+          name={icon}
+          size={15}
+          color={onDark ? colors.textOnDarkMuted : colors.textMuted}
+          style={styles.icon}
+        />
+        <Text
+          style={[styles.value, onDark ? styles.valueOnDark : styles.valueOnLight]}
+          numberOfLines={2}
+        >
           {value}
         </Text>
       </View>

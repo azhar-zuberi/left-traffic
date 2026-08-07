@@ -18,14 +18,18 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Hangar',
-          tabBarIcon: ({ color, size }) => <Icon name="home-outline" color={color as string} size={size} />,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home-outline" color={color as string} size={size} />
+          ),
         }}
       />
       <Tabs.Screen
         name="flightline"
         options={{
           title: 'Flightline',
-          tabBarIcon: ({ color, size }) => <Icon name="airplane-outline" color={color as string} size={size} />,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="airplane-outline" color={color as string} size={size} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -54,7 +58,9 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, size }) => <Icon name="person-outline" color={color as string} size={size} />,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="person-outline" color={color as string} size={size} />
+          ),
         }}
       />
     </Tabs>

@@ -37,7 +37,9 @@ export function StepIndicator({ steps, activeIndex }: Props) {
               </Text>
             </View>
             {index < steps.length - 1 && (
-              <View style={[styles.line, index < activeIndex ? styles.lineActive : styles.lineInactive]} />
+              <View
+                style={[styles.line, index < activeIndex ? styles.lineActive : styles.lineInactive]}
+              />
             )}
           </Fragment>
         );

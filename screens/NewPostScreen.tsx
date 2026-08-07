@@ -17,7 +17,12 @@ import { ActionSheet, type ActionSheetOption } from '@/components/ActionSheet';
 import { Icon, type IconName } from '@/components/Icon';
 import { useAppData } from '@/hooks/useAppData';
 import { colors, radii, spacing, typography } from '@/theme';
-import { captureFromCamera, isCameraAvailable, pickFromLibrary, type PickedMedia } from '@/utils/mediaPicker';
+import {
+  captureFromCamera,
+  isCameraAvailable,
+  pickFromLibrary,
+  type PickedMedia,
+} from '@/utils/mediaPicker';
 import { CATEGORY_LABELS, POST_CATEGORIES } from '@/utils/postCategories';
 import {
   CURRENT_USER_ID,
@@ -153,7 +158,11 @@ export function NewPostScreen() {
           {mediaType === 'video' ? (
             <View style={[styles.completePhoto, styles.completeVideo]}>
               {thumbnailUrl && (
-                <Image source={{ uri: thumbnailUrl }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+                <Image
+                  source={{ uri: thumbnailUrl }}
+                  style={StyleSheet.absoluteFill}
+                  resizeMode="cover"
+                />
               )}
               <Icon name="play-circle-outline" size={36} color={colors.textOnDark} />
             </View>
@@ -174,7 +183,10 @@ export function NewPostScreen() {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView
+      style={styles.flex}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
@@ -188,14 +200,21 @@ export function NewPostScreen() {
           </Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
           <View style={styles.heroWrap}>
             {mediaUrl ? (
               <>
                 {mediaType === 'video' ? (
                   <View style={styles.heroVideo}>
                     {thumbnailUrl && (
-                      <Image source={{ uri: thumbnailUrl }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+                      <Image
+                        source={{ uri: thumbnailUrl }}
+                        style={StyleSheet.absoluteFill}
+                        resizeMode="cover"
+                      />
                     )}
                     <Icon name="play-circle-outline" size={48} color={colors.textOnDark} />
                   </View>

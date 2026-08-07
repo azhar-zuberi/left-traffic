@@ -45,7 +45,12 @@ export function ActionSheet({ visible, onClose, title, message, options }: Props
                       option.onPress();
                     }}
                   >
-                    <Text style={[styles.optionText, option.destructive && styles.optionTextDestructive]}>
+                    <Text
+                      style={[
+                        styles.optionText,
+                        option.destructive && styles.optionTextDestructive,
+                      ]}
+                    >
                       {option.label}
                     </Text>
                   </Pressable>
