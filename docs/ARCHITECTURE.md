@@ -16,6 +16,14 @@ sample-data/
 
 utils/
 
+scripts/ — build/verification scripts, not app code. Currently just
+check-sample-data.mjs, the referential-integrity gate for sample-data/.
+
+.githooks/ — pre-commit and pre-push gates. Wired by `npm install` via the
+"prepare" script; see CLAUDE.md's "The gate stack" for what runs where.
+
+.github/ — CI workflow and the pull request template.
+
 Every component should be reusable.
 
 No business logic.

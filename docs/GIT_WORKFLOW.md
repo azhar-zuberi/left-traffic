@@ -26,15 +26,31 @@
 5. `poc<N>` branches are cut, not merged into. If a checkpoint is needed for a new phase, cut a
    new `poc<N+1>` from the then-current `main`.
 
+## What runs on a branch
+
+- **Locally**, if `npm install` has been run: `.githooks/pre-commit` (lint, format check,
+  typecheck) and `.githooks/pre-push` (sample-data integrity). These are advisory — `--no-verify`
+  skips them, and `core.hooksPath` is unset on a fresh clone until `npm install` runs.
+- **On the PR**: `.github/workflows/pr.yml` re-runs all of the above on a clean checkout, plus
+  `expo export`. This is the layer that actually holds.
+- **At review**: `.github/pull_request_template.md` asks for acceptance criteria restated and
+  evidence per criterion. Opening a PR with `gh pr create --fill` skips the template — use plain
+  `gh pr create` when you want it.
+
+Run `npm run verify` before pushing and none of the above should surprise you. See CLAUDE.md's
+"The gate stack" for why each layer exists.
+
 ## Branch protection (current state)
 
 - `main`: PRs required, direct pushes blocked, force-push and branch deletion blocked.
 - `develop`: no GitHub-enforced protection yet — rule 2/3 above is a process convention, not
-  something the platform currently blocks. Enable equivalent protection on `develop` (PR required,
-  direct pushes blocked) when it's worth the setup cost; until then, follow it by discipline.
+  something the platform currently blocks. Now that CI exists, the setup cost has dropped: enable
+  PR-required + direct-pushes-blocked on `develop` and mark the `verify` job a required check.
+  Until that's done, layer 4 is only advisory in practice, because nothing stops a direct push
+  that never opened a PR.
 
 ## Not decided yet
 
-PR review requirements (approvals, required checks) and a formal release process for cutting
-`main` from `develop`. Revisit once there's more than one contributor or the app nears a stable
-milestone.
+Approval requirements (how many reviewers, and whether a solo contributor should be able to
+self-approve) and a formal release process for cutting `main` from `develop`. Revisit once there's
+more than one contributor or the app nears a stable milestone.

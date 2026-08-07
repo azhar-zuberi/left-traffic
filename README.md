@@ -15,7 +15,7 @@ Context, and FlashList.
 ## Getting started
 
 ```bash
-npm install
+npm install      # also wires the git hooks in .githooks/ via the "prepare" script
 npm start        # then press i (iOS), a (Android), or w (web)
 ```
 
@@ -26,6 +26,22 @@ npm run ios
 npm run android
 npm run web
 ```
+
+## Verifying a change
+
+```bash
+npm run verify   # lint + format check + typecheck + sample-data integrity
+```
+
+Run this before pushing. The same checks run in a pre-commit hook and again in CI, so skipping it
+only means finding out later. Individual pieces: `npm run lint`, `npm run format`,
+`npm run typecheck`, `npm run check:data`.
+
+There's no unit test runner. For a prototype of screens over static JSON that's deliberate —
+`check:data` (referential integrity of `sample-data/`) plus a real `expo export` in CI covers more
+of what actually breaks here than component tests would. Revisit when the backend lands.
+
+See `CLAUDE.md` → "The gate stack" for the full picture of what runs where and why.
 
 ## Project structure
 
@@ -38,6 +54,9 @@ sample-data/    local JSON: users, aircraft, posts, comments, activity
 utils/          typed accessors for sample-data (utils/sampleData.ts) + shared types
 hooks/          shared hooks
 docs/           product brief, design system, screen requirements, mock data spec
+scripts/        verification scripts (check-sample-data.mjs)
+.githooks/      pre-commit and pre-push gates
+.github/        CI workflow and PR template
 ```
 
 ## Documentation
