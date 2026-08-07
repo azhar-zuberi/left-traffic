@@ -33,7 +33,11 @@ export function PostMedia({ post, style, interactive = true, playBadgeSize = 36 
   const thumbnail = (
     <View style={[style, styles.videoBox]}>
       {post.thumbnailUrl ? (
-        <Image source={{ uri: post.thumbnailUrl }} style={StyleSheet.absoluteFill} resizeMode="cover" />
+        <Image
+          source={{ uri: post.thumbnailUrl }}
+          style={StyleSheet.absoluteFill}
+          resizeMode="cover"
+        />
       ) : (
         <View style={[StyleSheet.absoluteFill, styles.videoFallback]} />
       )}
@@ -57,7 +61,11 @@ export function PostMedia({ post, style, interactive = true, playBadgeSize = 36 
       >
         {thumbnail}
       </Pressable>
-      <VideoPlayerModal visible={playerVisible} uri={post.mediaUrl} onClose={() => setPlayerVisible(false)} />
+      <VideoPlayerModal
+        visible={playerVisible}
+        uri={post.mediaUrl}
+        onClose={() => setPlayerVisible(false)}
+      />
     </>
   );
 }

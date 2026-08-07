@@ -1,6 +1,11 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-import { aircraft as seedAircraft, comments as seedComments, posts as seedPosts, users as seedUsers } from '@/utils/sampleData';
+import {
+  aircraft as seedAircraft,
+  comments as seedComments,
+  posts as seedPosts,
+  users as seedUsers,
+} from '@/utils/sampleData';
 import { CURRENT_USER_ID, type Aircraft, type Comment, type Post, type User } from '@/utils/types';
 
 type AppDataContextValue = {
@@ -79,7 +84,9 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     };
     setComments((prev) => [...prev, comment]);
     setPosts((prev) =>
-      prev.map((post) => (post.id === postId ? { ...post, commentCount: post.commentCount + 1 } : post)),
+      prev.map((post) =>
+        post.id === postId ? { ...post, commentCount: post.commentCount + 1 } : post,
+      ),
     );
   }
 
@@ -89,7 +96,9 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     setComments((prev) => prev.filter((c) => c.id !== commentId));
     setPosts((prev) =>
       prev.map((post) =>
-        post.id === comment.postId ? { ...post, commentCount: Math.max(0, post.commentCount - 1) } : post,
+        post.id === comment.postId
+          ? { ...post, commentCount: Math.max(0, post.commentCount - 1) }
+          : post,
       ),
     );
   }

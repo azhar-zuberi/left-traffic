@@ -1,0 +1,80 @@
+name: PR checks
+
+# Layer 4 of the gate stack. Everything here also runs in a local git hook,
+# and that is the point: local hooks are advisory (`--no-verify` skips them,
+# and core.hooksPath is never set on a fresh clone until someone runs
+# `npm install`). This job runs on a clean checkout with no way to opt out, so
+# it is the gate that actually holds.
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+  workflow_dispatch:
+
+# A new push to the same PR cancels the previous run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Lint · format · types · data
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Sample-data integrity
+        run: npm run check:data
+
+  bundle:
+    name: Bundle (expo export)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # The closest thing this prototype has to an integration test: a real
+      # bundle fails on broken imports, bad @/ paths and missing modules that
+      # typecheck alone will happily pass. Too slow for a git hook, fine here.
+      - name: Export web bundle
+        run: npx expo export --platform web --output-dir dist-ci
+
+      - name: Upload bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-bundle
+          path: dist-ci
+          retention-days: 7
+          if-no-files-found: warn

@@ -154,7 +154,10 @@ export function AddAircraftScreen() {
   const detailsValid = draft.manufacturer.trim().length > 0 && draft.model.trim().length > 0;
 
   return (
-    <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView
+      style={styles.flex}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={goBack} hitSlop={8} style={styles.backButton}>
@@ -168,12 +171,17 @@ export function AddAircraftScreen() {
           <StepIndicator steps={STEPS} activeIndex={STEP_ORDER.indexOf(step)} />
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
           {step === 'identify' && (
             <View style={styles.section}>
               <View style={styles.titleGroup}>
                 <Text style={styles.heading}>Let&rsquo;s identify your aircraft</Text>
-                <Text style={styles.subheading}>Enter your tail number and we&rsquo;ll look it up.</Text>
+                <Text style={styles.subheading}>
+                  Enter your tail number and we&rsquo;ll look it up.
+                </Text>
               </View>
 
               <View style={styles.fieldGroup}>
@@ -221,14 +229,19 @@ export function AddAircraftScreen() {
                   <Text style={styles.fieldLabel}>Lookup Result</Text>
                   <Pressable
                     onPress={continueWithLookupResult}
-                    style={({ pressed }) => [styles.resultCard, pressed && styles.resultCardPressed]}
+                    style={({ pressed }) => [
+                      styles.resultCard,
+                      pressed && styles.resultCardPressed,
+                    ]}
                   >
                     <Image source={{ uri: lookupResult.heroPhotoUrl }} style={styles.resultPhoto} />
                     <View style={styles.resultText}>
                       <Text style={styles.resultTitle}>
                         {lookupResult.year} {lookupResult.manufacturer} {lookupResult.model}
                       </Text>
-                      <Text style={styles.resultSubtitle}>Serial Number: {lookupResult.serialNumber}</Text>
+                      <Text style={styles.resultSubtitle}>
+                        Serial Number: {lookupResult.serialNumber}
+                      </Text>
                     </View>
                     <Icon name="chevron-forward" size={18} color={colors.textMuted} />
                   </Pressable>
@@ -238,7 +251,8 @@ export function AddAircraftScreen() {
               {lookupState === 'not-found' && (
                 <View style={styles.resultSection}>
                   <Text style={styles.notFoundText}>
-                    We couldn&rsquo;t find &ldquo;{tailInput.trim().toUpperCase()}&rdquo; in the registry.
+                    We couldn&rsquo;t find &ldquo;{tailInput.trim().toUpperCase()}&rdquo; in the
+                    registry.
                   </Text>
                 </View>
               )}
@@ -252,7 +266,9 @@ export function AddAircraftScreen() {
           {step === 'details' && (
             <View style={styles.section}>
               <View style={styles.titleGroup}>
-                <Text style={styles.heading}>Tell us about {draft.registration || 'your aircraft'}</Text>
+                <Text style={styles.heading}>
+                  Tell us about {draft.registration || 'your aircraft'}
+                </Text>
                 <Text style={styles.subheading}>Review and fill in what we know.</Text>
               </View>
 
@@ -352,7 +368,9 @@ export function AddAircraftScreen() {
               <View style={styles.successIcon}>
                 <Icon name="checkmark" size={32} color={colors.textOnDark} />
               </View>
-              {draft.photos[0] && <Image source={{ uri: draft.photos[0] }} style={styles.completePhoto} />}
+              {draft.photos[0] && (
+                <Image source={{ uri: draft.photos[0] }} style={styles.completePhoto} />
+              )}
               <Text style={styles.completeTitle}>{draft.registration} added to your hangar</Text>
               <Text style={styles.completeSubtitle}>
                 {draft.year} {draft.manufacturer} {draft.model}

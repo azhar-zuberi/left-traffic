@@ -14,7 +14,10 @@ export function LogbookEntry({ post, onPress }: Props) {
   const { month, day } = formatLogbookDate(post.createdAt);
 
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
+    >
       <View style={styles.dateColumn}>
         <Text style={styles.month}>{month}</Text>
         <Text style={styles.day}>{day}</Text>

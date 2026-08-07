@@ -83,10 +83,17 @@ export function ProfileScreen() {
             {myAircraft.map((a) => (
               <Pressable
                 key={a.id}
-                style={({ pressed }) => [styles.aircraftChip, pressed && styles.aircraftChipPressed]}
+                style={({ pressed }) => [
+                  styles.aircraftChip,
+                  pressed && styles.aircraftChipPressed,
+                ]}
                 onPress={() => router.push(`/aircraft/${a.id}`)}
               >
-                <Image source={{ uri: a.heroPhotoUrl }} style={styles.aircraftPhoto} resizeMode="cover" />
+                <Image
+                  source={{ uri: a.heroPhotoUrl }}
+                  style={styles.aircraftPhoto}
+                  resizeMode="cover"
+                />
                 <Text style={styles.aircraftReg}>{a.registration}</Text>
                 <Text style={styles.aircraftModel} numberOfLines={1}>
                   {a.manufacturer} {a.model}
@@ -108,7 +115,12 @@ export function ProfileScreen() {
                   style={({ pressed }) => [styles.postTile, pressed && styles.postTilePressed]}
                   onPress={() => router.push(`/comments/${post.id}`)}
                 >
-                  <PostMedia post={post} style={styles.postPhoto} interactive={false} playBadgeSize={24} />
+                  <PostMedia
+                    post={post}
+                    style={styles.postPhoto}
+                    interactive={false}
+                    playBadgeSize={24}
+                  />
                 </Pressable>
               ))}
             </View>

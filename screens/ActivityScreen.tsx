@@ -12,7 +12,11 @@ import type { ActivityItem, Aircraft, User } from '@/utils/types';
 // Aircraft-first identity model (docs/PRODUCT_VISION.md): show the actor's
 // tail number when they currently own an aircraft, falling back to their
 // handle when they don't.
-function actorAvatar(item: ActivityItem, usersById: Map<string, User>, aircraftById: Map<string, Aircraft>): string {
+function actorAvatar(
+  item: ActivityItem,
+  usersById: Map<string, User>,
+  aircraftById: Map<string, Aircraft>,
+): string {
   if (item.actorAircraftId) {
     const ownedAircraft = aircraftById.get(item.actorAircraftId);
     if (ownedAircraft) return ownedAircraft.heroPhotoUrl;
@@ -20,7 +24,11 @@ function actorAvatar(item: ActivityItem, usersById: Map<string, User>, aircraftB
   return usersById.get(item.actorUserId)?.avatarUrl ?? '';
 }
 
-function actorName(item: ActivityItem, usersById: Map<string, User>, aircraftById: Map<string, Aircraft>): string {
+function actorName(
+  item: ActivityItem,
+  usersById: Map<string, User>,
+  aircraftById: Map<string, Aircraft>,
+): string {
   if (item.actorAircraftId) {
     const ownedAircraft = aircraftById.get(item.actorAircraftId);
     if (ownedAircraft) return ownedAircraft.registration;
@@ -56,7 +64,9 @@ export function ActivityScreen() {
         avatarUrl={actorAvatar(item, usersById, aircraftById)}
         actorName={actorName(item, usersById, aircraftById)}
         createdAt={item.createdAt}
-        onPress={item.targetPostId ? () => router.push(`/comments/${item.targetPostId}`) : undefined}
+        onPress={
+          item.targetPostId ? () => router.push(`/comments/${item.targetPostId}`) : undefined
+        }
       />
     );
   }

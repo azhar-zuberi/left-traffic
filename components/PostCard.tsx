@@ -41,7 +41,10 @@ export function PostCard({ post, aircraft, onPress, onDeleted }: Props) {
 
   return (
     <>
-      <Pressable onPress={onPress} style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}>
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+      >
         <View style={styles.header}>
           <Image source={{ uri: aircraft.heroPhotoUrl }} style={styles.avatar} />
           <View style={styles.headerText}>
@@ -77,7 +80,9 @@ export function PostCard({ post, aircraft, onPress, onDeleted }: Props) {
                 size={20}
                 color={liked ? colors.like : colors.textMuted}
               />
-              <Text style={styles.actionCount}>{formatNumber(post.likeCount + (liked ? 1 : 0))}</Text>
+              <Text style={styles.actionCount}>
+                {formatNumber(post.likeCount + (liked ? 1 : 0))}
+              </Text>
             </Pressable>
 
             <Pressable style={styles.actionItem} onPress={onPress} hitSlop={8}>
@@ -94,7 +99,11 @@ export function PostCard({ post, aircraft, onPress, onDeleted }: Props) {
               }}
               hitSlop={8}
             >
-              <Icon name={saved ? 'bookmark' : 'bookmark-outline'} size={19} color={colors.textMuted} />
+              <Icon
+                name={saved ? 'bookmark' : 'bookmark-outline'}
+                size={19}
+                color={colors.textMuted}
+              />
             </Pressable>
 
             {isOwner && (

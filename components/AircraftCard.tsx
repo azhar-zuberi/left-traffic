@@ -15,7 +15,10 @@ type Props = {
 
 export function AircraftCard({ aircraft, postCount, adventureCount, onPress }: Props) {
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+    >
       <View style={styles.photoWrap}>
         <Image source={{ uri: aircraft.heroPhotoUrl }} style={styles.photo} resizeMode="cover" />
         <View style={styles.pillOverlay}>
@@ -33,8 +36,16 @@ export function AircraftCard({ aircraft, postCount, adventureCount, onPress }: P
 
         <View style={styles.statsRow}>
           <StatBlock icon="images-outline" value={formatNumber(postCount)} label="Posts" />
-          <StatBlock icon="compass-outline" value={formatNumber(adventureCount)} label="Adventures" />
-          <StatBlock icon="time-outline" value={formatNumber(aircraft.totalHours)} label="Total Hours" />
+          <StatBlock
+            icon="compass-outline"
+            value={formatNumber(adventureCount)}
+            label="Adventures"
+          />
+          <StatBlock
+            icon="time-outline"
+            value={formatNumber(aircraft.totalHours)}
+            label="Total Hours"
+          />
         </View>
       </View>
     </Pressable>

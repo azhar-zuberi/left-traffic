@@ -46,7 +46,10 @@ export function SettingsScreen() {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView
+      style={styles.flex}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Pressable onPress={() => router.back()} hitSlop={8} style={styles.backButton}>
@@ -58,11 +61,20 @@ export function SettingsScreen() {
           </Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
           <Text style={styles.sectionLabel}>Profile</Text>
           <View style={styles.formCard}>
             <FormField label="Name" value={name} onChangeText={setName} placeholder="Your name" />
-            <FormField label="Handle" value={handle} onChangeText={setHandle} placeholder="handle" autoCapitalize="none" />
+            <FormField
+              label="Handle"
+              value={handle}
+              onChangeText={setHandle}
+              placeholder="handle"
+              autoCapitalize="none"
+            />
             <FormField
               label="Home Airport"
               value={homeAirport}
@@ -70,7 +82,13 @@ export function SettingsScreen() {
               placeholder="KSQL"
               autoCapitalize="characters"
             />
-            <FormField label="Bio" value={bio} onChangeText={setBio} placeholder="Tell your story." multiline />
+            <FormField
+              label="Bio"
+              value={bio}
+              onChangeText={setBio}
+              placeholder="Tell your story."
+              multiline
+            />
           </View>
 
           <Text style={styles.sectionLabel}>Preferences</Text>
@@ -117,12 +135,20 @@ export function SettingsScreen() {
 
           <Text style={styles.sectionLabel}>About</Text>
           <View style={styles.listCard}>
-            <SettingsRow icon="information-circle-outline" label="Left Traffic" right={<Text style={styles.value}>Prototype</Text>} />
+            <SettingsRow
+              icon="information-circle-outline"
+              label="Left Traffic"
+              right={<Text style={styles.value}>Prototype</Text>}
+            />
           </View>
 
           <Pressable
             onPress={() => router.replace('/login')}
-            style={({ pressed }) => [styles.listCard, styles.logoutCard, pressed && styles.logoutCardPressed]}
+            style={({ pressed }) => [
+              styles.listCard,
+              styles.logoutCard,
+              pressed && styles.logoutCardPressed,
+            ]}
           >
             <SettingsRow icon="log-out-outline" label="Log Out" destructive />
           </Pressable>

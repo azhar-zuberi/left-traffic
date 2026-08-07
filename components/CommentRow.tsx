@@ -36,7 +36,11 @@ export function CommentRow({ comment, author }: Props) {
           )}
         </View>
         <Text style={styles.text}>{comment.body}</Text>
-        <Pressable style={styles.likeButton} onPress={() => toggleCommentLike(comment.id)} hitSlop={8}>
+        <Pressable
+          style={styles.likeButton}
+          onPress={() => toggleCommentLike(comment.id)}
+          hitSlop={8}
+        >
           <Icon
             name={liked ? 'heart' : 'heart-outline'}
             size={14}

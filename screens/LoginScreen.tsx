@@ -51,7 +51,11 @@ export function LoginScreen() {
             <Text style={styles.appleButtonText}>Continue with Apple</Text>
           </Pressable>
 
-          <Pressable onPress={() => router.push('/register')} hitSlop={8} style={styles.moreOptions}>
+          <Pressable
+            onPress={() => router.push('/register')}
+            hitSlop={8}
+            style={styles.moreOptions}
+          >
             <Text style={styles.moreOptionsText}>More options</Text>
           </Pressable>
 

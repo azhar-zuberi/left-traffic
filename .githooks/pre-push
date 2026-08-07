@@ -1,0 +1,17 @@
+#!/bin/sh
+# Slower gate, run once per push rather than once per commit.
+#
+# This prototype has no unit tests and mostly shouldn't have any — it's screens
+# over static JSON. The equivalent safety net here is:
+#   1. referential integrity of sample-data/ (the actual data layer), and
+#   2. a real bundle, which is what catches broken imports and bad module paths.
+#
+# `expo export` is deliberately NOT run here — it takes long enough that people
+# start skipping the hook. It runs in CI instead.
+
+set -e
+
+echo "pre-push: sample-data integrity"
+npm run --silent check:data
+
+echo "pre-push: OK"
