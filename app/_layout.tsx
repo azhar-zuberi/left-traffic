@@ -1,7 +1,13 @@
+// Bare side-effect imports, required at the top of the entry tree by
+// react-native-gesture-handler and react-native-reanimated. This duplicates the
+// named GestureHandlerRootView import below on purpose — the side effect has to
+// run before anything else, so don't "clean this up" by merging the two.
+// eslint-disable-next-line import/no-duplicates
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 
 import { Stack } from 'expo-router';
+// eslint-disable-next-line import/no-duplicates -- see the side-effect import above
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -23,7 +29,12 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <StatusBar style="auto" />
         <AppDataProvider>
-          <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: colors.background },
+            }}
+          >
             <Stack.Screen name="login" />
             <Stack.Screen name="register" options={{ presentation: 'modal' }} />
             <Stack.Screen name="(tabs)" />
